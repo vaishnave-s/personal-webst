@@ -365,6 +365,8 @@ a {
    /* background-color:transperant; */
    outline:none;
    cursor: pointer;
+   box-shadow: 0 19px 36px #00000029;
+
   }
   .gLogo-section{
     margin-top:2rem ;
