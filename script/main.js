@@ -166,7 +166,7 @@ signOut=()=>{
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("Signout success");
-      location.replace("/")
+      location.replace("../")
 
   }).catch(function(error) {
     console.log("Signout error");
