@@ -28,6 +28,7 @@ var firebaseConfig = {
 //   }
 // }
 //
+console.log(window.location.pathname);
 if (window.location.pathname!="/index.html"||window.location.pathname!="/"){
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -193,7 +194,7 @@ function login(){
 
 };
   function app(user){
-    location.replace("/home.html")
+    location.replace("./home.html")
 
       console.log(user)
 
