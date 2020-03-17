@@ -28,7 +28,7 @@ var firebaseConfig = {
 //   }
 // }
 //
-if (window.location.pathname!="/login.html"){
+if (window.location.pathname!="/index.html"){
 window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("nav").style.width = "0";
    document.getElementById("main").style.marginLeft = "0";
@@ -144,7 +144,7 @@ var myChart = new Chart(ctx, {
 });}
 }
 ///////////////////////////////////////////////////
-if (window.location.pathname!="/login.html"){
+if (window.location.pathname!="/index.html"){
 
 var menuItems = ["HOME", "ABOUT","INTERESTS","CONTACT"]
 var str = '<ul>'
@@ -164,7 +164,7 @@ signOut=()=>{
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("Signout success");
-      location.replace("../login.html")
+      location.replace("../index.html")
 
   }).catch(function(error) {
     console.log("Signout error");
