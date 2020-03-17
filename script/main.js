@@ -14,6 +14,19 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
   const firestore = firebase.firestore();
+  //Handle Account Status
+
+///////////////////AUTH GUARD//////////////////
+if(window.location.pathname!="/"){
+firebase.auth().onAuthStateChanged(user => {
+    if(!user) {
+      window.location = '../'; 
+    }
+  });
+}
+////////////////////////////////////////////////
+
+
 //
 // window.onscroll = function() {myFunction()};
 
