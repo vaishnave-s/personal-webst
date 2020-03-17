@@ -1,36 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Vaishnave</title>
-            <link href="css/styles.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div id="toggler">
-        <span id="openNav">&#9776; Menu</span>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vaishnave</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="toggler">
+        <!-- <span id="openNav"> &#9776; Home </span> -->
+
+        <span class="name-title">
+
+
+            Vaishnave Subbramanian
+        </span>
     </div>
-        <nav id="nav" class="sidenav">
-            <div class="sidenav-contents">
-                <h2>Menu</h2>
-                
-                <a href="#" class="closebtn" id="closeNav">&times;</a>
-                <div id="menuList">
+    <!-- <nav id="nav" class="sidenav">
+        <div class="sidenav-contents">
+
+            <a href="#" class="closebtn" id="closeNav">&times;</a>
+            <div id="menuList">
 
 
-                </div>
             </div>
-        </nav>
-        <header>Vaishnave's Page</header>
-        <main id="main"></main>
+            <div class="logout-section">
+                    <div class="navigation">
+  
+                            <a class="button" href="">
+                              <img class="logoutimg" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/logout-2030711-1713351.png">
+                          
+                          <div onclick="signOut()" class="logout">LOGOUT</div>
+                        
+                            </a>
+                          
+                        </div>
+            </div>
+        </div>
+    </nav> -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> </script>
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
-        <script src="./script/main.js"></script>
-        
-    </body>
+    ` <main id="main"></main>
+
+
+
+    <!-- <div class="content"> -->
+    <div class="card-section">
+
+        <div id="login-card">
+            <div id="heading">Sign into my website</div>
+            <!-- <a href="#" onclick="gSignin()">SIGN IN</a> -->
+            <div class="gLogo-section">
+                <button id="GSignIn" class="gLogo-btn"><img class="gLogo" src="https://www.c-learning.net/storage/app/media/img/buttons/google-login-button.png"></button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
+
+    <script src="./script/main.js"></script>
+    <!-- </div> -->
+</body>
+
 </html>
