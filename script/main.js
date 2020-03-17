@@ -54,6 +54,15 @@ closeNav.addEventListener("click",(e) => {
 
 });
 }
+if(GSignIn){
+    GSignIn.addEventListener("click",(e) => {
+
+    login();
+        
+    
+    });
+    }
+
 ///////////////////////Chart///////////////////////
 if (window.location.pathname=="/about.html"){
 window.onload = function() {
@@ -147,6 +156,8 @@ document.getElementById("menuList").innerHTML = str;
 }
 ///////////////////////////////////////////////////
 
+
+
 signOut=()=>{
     console.log("Signout");
 
@@ -187,4 +198,3 @@ function login(){
 
   console.log(user.displayName);
 };
-gSignin=()=>{login();}

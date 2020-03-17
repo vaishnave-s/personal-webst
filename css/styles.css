@@ -361,7 +361,8 @@ a {
 
   .gLogo-btn{
     border:none;
-   background-color:transperant;
+    background-color: white;
+   /* background-color:transperant; */
    outline:none;
    cursor: pointer;
   }
