@@ -28,7 +28,7 @@ var firebaseConfig = {
 //   }
 // }
 //
-if (window.location.pathname!="../index.html"||window.location.pathname!="../"){
+if (window.location.pathname!="/index.html"||window.location.pathname!="/"){
 
 window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("nav").style.width = "0";
@@ -65,7 +65,7 @@ if(GSignIn){
     }
 
 ///////////////////////Chart///////////////////////
-if (window.location.pathname=="../about.html"){
+if (window.location.pathname=="/about.html"){
 window.onload = function() {
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -145,7 +145,7 @@ var myChart = new Chart(ctx, {
 });}
 }
 ///////////////////////////////////////////////////
-if (window.location.pathname!="../index.html"||window.location.pathname!="../"){
+if (window.location.pathname!="/index.html"||window.location.pathname!="/"){
 
 var menuItems = ["HOME", "ABOUT","INTERESTS","CONTACT"]
 var str = '<ul>'
@@ -165,7 +165,7 @@ signOut=()=>{
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("Signout success");
-      location.replace("../")
+      location.replace("/")
 
   }).catch(function(error) {
     console.log("Signout error");
@@ -193,7 +193,7 @@ function login(){
 
 };
   function app(user){
-    location.replace("../home.html")
+    location.replace("/home.html")
 
       console.log(user)
 
