@@ -14,10 +14,16 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
   const firestore = firebase.firestore();
-  //Handle Account Status
 
+
+///////////////////////////////////////////////////
+  var url = window.location.pathname;
+  var path = url.substring(url.lastIndexOf('/')+1);
+  console.log(window.location.pathname);
+
+  
 ///////////////////AUTH GUARD//////////////////
-if(window.location.pathname!="/"){
+if(path!=""){
 firebase.auth().onAuthStateChanged(user => {
     if(!user) {
       window.location = '../'; 
@@ -41,8 +47,8 @@ firebase.auth().onAuthStateChanged(user => {
 //   }
 // }
 //
-console.log(window.location.pathname);
-if (window.location.pathname!="/index.html"||window.location.pathname!="/"){
+
+if (path!="index.html"||path!=""){
 
 window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById("nav").style.width = "0";
@@ -79,7 +85,7 @@ if(GSignIn){
     }
 
 ///////////////////////Chart///////////////////////
-if (window.location.pathname=="/about.html"){
+if (path=="about.html"){
 window.onload = function() {
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -159,7 +165,7 @@ var myChart = new Chart(ctx, {
 });}
 }
 ///////////////////////////////////////////////////
-if (window.location.pathname!="/index.html"||window.location.pathname!="/"){
+if (path!="index.html"||path!=""){
 
 var menuItems = ["HOME", "ABOUT","INTERESTS","CONTACT"]
 var str = '<ul>'
