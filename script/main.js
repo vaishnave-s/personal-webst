@@ -11,66 +11,70 @@ var firebaseConfig = {
     messagingSenderId: "222343428376",
     appId: "1:222343428376:web:5f92d20c8ef1e8a5afc66d",
     measurementId: "G-GDZ6GNV45N"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const firestore = firebase.firestore();
+};
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
 
 
 ///////////////////////////////////////////////////
-  var url = window.location.pathname;
-  var path = url.substring(url.lastIndexOf('/')+1);
-  console.log(path);
+var url = window.location.pathname;
+var path = url.substring(url.lastIndexOf('/') + 1);
+console.log(path);
 
-  
+
 ///////////////////AUTH GUARD//////////////////
-if(path!=""){
-firebase.auth().onAuthStateChanged(user => {
-    if(!user) {
-      window.location = './'; 
-      
-    }
-    else{
-        // console.log(user);
+if (path != "") {
+    firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+            window.location = './';
 
-        var name = user.displayName;
-        document.getElementById("userName").innerHTML = "<p>Hi "+name.substring(0,name.lastIndexOf(" "))+"</p>";
-        sessionStorage.setItem('userId', user.uid);
-        sessionStorage.setItem('userName', user.displayName);
-        sessionStorage.setItem('userEmail', user.email);
-        sessionStorage.setItem('userNumber', user.phoneNumber);
-        sessionStorage.setItem('userPhoto', user.photoURL);
+        }
+        else {
+            console.log(user);
 
-
-
-    }
-  });
-}
-////////////////////////////////////////////////
-
-function getData(){
-    firebase.database().ref().once('value').then(function(snapshot) {
-   if(Object.keys(snapshot.val().users).indexOf(sessionStorage.getItem("userId")) ==-1){
-
-    firebase.database().ref().child('users').child(sessionStorage.getItem('userId')).set({
-    name: sessionStorage.getItem('userName'),
-    email: sessionStorage.getItem('userEmail'),
-    photoURL : sessionStorage.getItem('userPhoto'),
-    phoneNumber : sessionStorage.getItem('userNumber'),
-});
-
-}
+            var name = user.displayName;
+            document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
+            sessionStorage.setItem('userId', user.uid);
+            sessionStorage.setItem('userName', user.displayName);
+            sessionStorage.setItem('userEmail', user.email);
+            sessionStorage.setItem('userNumber', user.phoneNumber);
+            sessionStorage.setItem('userPhoto', user.photoURL);
+            sessionStorage.setItem('userCreationTime', user.metadata.creationTime);
 
 
 
-    sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
 
-
-    
+        }
     });
-    
-    };
-    getData();
+}
 ////////////////////////////////////////////////
+
+function getData() {
+    firebase.database().ref().once('value').then(function (snapshot) {
+        if (Object.keys(snapshot.val().users).indexOf(sessionStorage.getItem("userId")) == -1) {
+
+            firebase.database().ref().child('users').child(sessionStorage.getItem('userId')).set({
+                name: sessionStorage.getItem('userName'),
+                email: sessionStorage.getItem('userEmail'),
+                photoURL: sessionStorage.getItem('userPhoto'),
+                phoneNumber: sessionStorage.getItem('userNumber'),
+                creationTime: sessionStorage.getItem('userCreationTime')
+            });
+
+        }
+
+
+
+        sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
+
+
+
+    });
+
+};
+getData();
+////////////////////////////////////////////////
+
 ////////////////////////////////////////////////
 
 
@@ -90,188 +94,194 @@ function getData(){
 //
 ////////////////////////////////////////////////
 
-    
-if (path!="index.html"||path!=""){
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("nav").style.width = "0";
-   document.getElementById("main").style.marginLeft = "0";
-});
-}
-if(openNav){
-openNav.addEventListener("click",(e) => {
+if (path != "index.html" || path != "") {
 
-    document.getElementById("nav").style.width = "15rem";
-    document.getElementById("nav").style.backgroundColor = "rgb(109, 19, 94,0.8)";
-
-    document.getElementById("main").style.marginLeft = "15rem";
-
-});
-}
-if(closeNav){
-closeNav.addEventListener("click",(e) => {
-    e.preventDefault();
-
-    document.getElementById("nav").style.width = "0rem";
-    document.getElementById("main").style.marginLeft = "0rem";
-    
-
-});
-}
-if(GSignIn){
-    GSignIn.addEventListener("click",(e) => {
-
-    login();
-        
-    
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById("nav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
     });
-    }
+}
+if (openNav) {
+    openNav.addEventListener("click", (e) => {
+
+        document.getElementById("nav").style.width = "15rem";
+        document.getElementById("nav").style.backgroundColor = "rgb(109, 19, 94,0.8)";
+
+        document.getElementById("main").style.marginLeft = "15rem";
+
+    });
+}
+if (closeNav) {
+    closeNav.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        document.getElementById("nav").style.width = "0rem";
+        document.getElementById("main").style.marginLeft = "0rem";
+
+
+    });
+}
+if (GSignIn) {
+    GSignIn.addEventListener("click", (e) => {
+
+        login();
+
+
+    });
+}
 
 
 ///////////////////////Chart///////////////////////
-if (path=="about.html"){
-var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
-document.getElementById("about-desc").innerHTML = aboutObj.description;
+if (path == "about.html") {
+    var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
+    document.getElementById("about-desc").innerHTML = aboutObj.description;
 
-window.onload = function() {
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    // ChartType = 'horizontalBar',
-    data: {
-        labels: ['Python', 'SQL', 'TS/JS', 'Angular 8', 'Django'],
-        datasets: [{
-            data: [65, 59, 80, 81, 56], label: 'Confidence Level',
-            backgroundColor: [
-                // 'rgb(218,165,32,0.7)',
-                // 'rgb(218,165,32,0.7)',
-                // 'rgb(218,165,32,0.7)',
-                // 'rgb(218,165,32,0.7)',
-                // 'rgb(218,165,32,0.7)',
-                "rgb(109, 19, 94,1)",
-                "rgb(109, 19, 94,1)",
-                "rgb(109, 19, 94,1)",
-                "rgb(109, 19, 94,1)",
-                "rgb(109, 19, 94,1)",
-
-
+    window.onload = function () {
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            // ChartType = 'horizontalBar',
+            data: {
+                labels: ['Python', 'SQL', 'TS/JS', 'Angular 8', 'Django'],
+                datasets: [{
+                    data: [65, 59, 80, 81, 56], label: 'Confidence Level',
+                    backgroundColor: [
+                        // 'rgb(218,165,32,0.7)',
+                        // 'rgb(218,165,32,0.7)',
+                        // 'rgb(218,165,32,0.7)',
+                        // 'rgb(218,165,32,0.7)',
+                        // 'rgb(218,165,32,0.7)',
+                        "rgb(109, 19, 94,1)",
+                        "rgb(109, 19, 94,1)",
+                        "rgb(109, 19, 94,1)",
+                        "rgb(109, 19, 94,1)",
+                        "rgb(109, 19, 94,1)",
 
 
 
- 
-
-            ],
-            borderColor: [
-                // 'rgb(218,165,32)',
-                // 'rgb(218,165,32)',
-                // 'rgb(218,165,32)',
-                // 'rgb(218,165,32)',
-                // 'rgb(218,165,32)',
-                // 'rgb(218,165,32)',
 
 
-                
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        legend: {
-            labels: {
-                // This more specific font property overrides the global property
-    fontFamily :'Montserrat',
-    fontStyle: 'bold',
+
+
+                    ],
+                    borderColor: [
+                        // 'rgb(218,165,32)',
+                        // 'rgb(218,165,32)',
+                        // 'rgb(218,165,32)',
+                        // 'rgb(218,165,32)',
+                        // 'rgb(218,165,32)',
+                        // 'rgb(218,165,32)',
+
+
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        fontFamily: 'Montserrat',
+                        fontStyle: 'bold',
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true, scaleLabel: {
+                            display: true, labelString: 'Percentage', fontStyle: 'bold',
+                            fontFamily: 'Montserrat',
+
+                            // fontColor:'#FF66C4',
+
+                        }, ticks: {
+
+                            beginAtZero: true,
+                            display: false,
+                            // fontColor:'rgb(218, 62, 158)',
+
+                            min: 0,
+                            max: 100
+                        }
+                    }], yAxes: [{
+                        display: true, scaleLabel: { display: true, }, ticks: {
+                            fontStyle: 'bold',
+                            fontFamily: 'Montserrat',
+
+                            beginAtZero: true,
+                            min: 0,
+                            max: 100
+                            // fontColor:'rgb(218, 62, 158)',
+
+                        }
+                    }]
+                }
             }
-        },
-        scales: {
-            xAxes: [{display: true,scaleLabel:{display: true,labelString:'Percentage',fontStyle: 'bold',
-            fontFamily :'Montserrat',
-
-            // fontColor:'#FF66C4',
-
-        },ticks: {
-
-                beginAtZero : true,
-                display: false,
-                // fontColor:'rgb(218, 62, 158)',
-          
-                min: 0,
-                max: 100
-              }}], yAxes: [{display: true,scaleLabel:{display: true,},ticks: {
-                fontStyle: 'bold',
-                fontFamily :'Montserrat',
-
-                beginAtZero: true,
-                min: 0,
-                max: 100
-                // fontColor:'rgb(218, 62, 158)',
-          
-              }}] 
-        }
+        });
     }
-});}
 }
 ///////////////////////////////////////////////////
-if (path!="index.html"||path!=""){
+if (path != "index.html" || path != "") {
 
-var menuItems = ["HOME", "ABOUT","INTERESTS","CONTACT"]
-var str = '<ul>'
-menuItems.forEach(function(menuItem) {
-  str += '<li><h2><a class=\"sidenav-list\" href=\"'+ menuItem.toLowerCase() + '.html\">'+menuItem+'</a><h2></li>';
-}); 
-str += '</ul>';
-document.getElementById("menuList").innerHTML = str;
+    var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
+    var str = '<ul>'
+    menuItems.forEach(function (menuItem) {
+        str += '<li><h2><a class=\"sidenav-list\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
+    });
+    str += '</ul>';
+    document.getElementById("menuList").innerHTML = str;
 }
 ///////////////////////////////////////////////////
 
 
 
-function signOut(){
+function signOut() {
 
-    firebase.auth().signOut().then(function() {
-    // Sign-out successful.
-    console.log("Signout success");
-    sessionStorage.clear();
-      location.replace("./")
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        console.log("Signout success");
+        sessionStorage.clear();
+        location.replace("./")
 
-  }).catch(function(error) {
-    console.log("Signout error");
-    // An error happened.
-  });
+    }).catch(function (error) {
+        console.log("Signout error");
+        // An error happened.
+    });
 };
 
 ///////////////////////////////////////////////////
-function login(){
-    function newLoginHappened(user){
-      if (user){
-          //user is signed in
+function login() {
+    function newLoginHappened(user) {
+        if (user) {
+            //user is signed in
 
-        //   if (user.email){
-          app(user);
-        //   }
-      }
-      else{
-          var provider = new firebase.auth.GoogleAuthProvider();
-          firebase.auth().signInWithPopup(provider);
+            //   if (user.email){
+            app(user);
+            //   }
+        }
+        else {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider);
 
-      }
+        }
     }
     firebase.auth().onAuthStateChanged(newLoginHappened);
 
 
 
 };
-  function app(user){
+function app(user) {
     var userEmail = user.email;
     // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
-    if(userEmail.substring(userEmail.lastIndexOf("@")+1)!="psiog.com"){
-    location.replace("./home.html");
+    if (userEmail.substring(userEmail.lastIndexOf("@") + 1) != "psiog.com") {
+        location.replace("./home.html");
     }
-    else{
+    else {
         signOut();
 
-        alert(message="This email is not acceptable. Please try another one.");
-        
+        alert(message = "This email is not acceptable. Please try another one.");
+
 
     }
 
