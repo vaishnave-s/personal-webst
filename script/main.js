@@ -26,9 +26,11 @@ var firebaseConfig = {
 if(path!=""){
 firebase.auth().onAuthStateChanged(user => {
     if(!user) {
-      window.location = '../'; 
+      window.location = './'; 
+      
     }
     else{
+        console.log(user);
 
         var name = user.displayName;
         document.getElementById("userName").innerHTML = "<p>Hi "+name.substring(0,name.lastIndexOf(" "))+"</p>";
@@ -54,17 +56,7 @@ firebase.auth().onAuthStateChanged(user => {
 // }
 //
 ////////////////////////////////////////////////
-function getData(){
-    firebase.database().ref().once('value').then(function(snapshot) {
-     this.aboutObj = snapshot.val().personal.about;
-     document.getElementById("about-desc").innerHTML = this.aboutObj.description;
-    
-    
-    });
-    
-    };
-    getData();
-////////////////////////////////////////////////
+
     
 if (path!="index.html"||path!=""){
 
@@ -203,7 +195,7 @@ function signOut(){
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("Signout success");
-      location.replace("../")
+      location.replace("./")
 
   }).catch(function(error) {
     console.log("Signout error");
@@ -233,7 +225,6 @@ function login(){
 
 };
   function app(user){
-    console.log(user);
     var userEmail = user.email;
     // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
     if(userEmail.substring(userEmail.lastIndexOf("@")+1)!="psiog.com"){
@@ -249,4 +240,22 @@ function login(){
 
 
 };
+////////////////////////////////////////////////
 
+function getData(){
+    firebase.database().ref().once('value').then(function(snapshot) {
+     this.aboutObj = snapshot.val().personal.about;
+     document.getElementById("about-desc").innerHTML = this.aboutObj.description;
+    
+    
+    });
+    
+    };
+    getData();
+////////////////////////////////////////////////
+// ref.child("users").orderByChild("ID").equalTo("U1EL5623").once("value",snapshot => {
+//     if (snapshot.exists()){
+//       const userData = snapshot.val();
+//       console.log("exists!", userData);
+//     }
+// });
