@@ -28,6 +28,7 @@ ul{
   list-style-type:none;
 }
 #toggler{
+  min-height: 40px;
     width: 100%;
     padding: 0.8rem;
     /* background-color: hsl(212, 51%, 14%); */
@@ -65,20 +66,32 @@ span{
 
 }
 .name-title{
+  text-shadow:2px 2px 1px black;
+
   letter-spacing: 12px;
   /* box-shadow: 0 19px 36px #00000029; */
     color: white;
     /* margin-left: 18rem; */
     font-size: 29px;
+
+    /* font-size: 29px; */
     font-weight: 800;
 
     /* font-weight: 500; */
     text-transform: uppercase;
-
+  cursor: default;
     /* opacity: 1; */
 
 }
+.name-title:hover{
+  font-size: 32px;
+  transition: 2s;
+  text-shadow: 0px -2px 0px rgba(0,0,0,1), 0 0 2px rgba(255,255,255,0.8),0 -4px 15px rgba(255,255,255,0.5);
 
+
+
+
+}
 
 .card-section{
   height: 100%;
@@ -89,6 +102,8 @@ span{
 }
 .card{
     background-color: rgb(255, 255, 255);
+    /* max-width: 791px; */
+    min-width: 219px;
     width: 65%;
     height: fit-content;
     padding: 1rem;
@@ -139,11 +154,15 @@ span{
     color:white;
 
 }
-.sidenav a:hover{
+
+.sidenav li:hover{
     cursor: pointer;
-    color: rgb(182, 182, 182);
+    /* color: rgb(182, 182, 182); */
+    text-shadow: 0px -2px 0px rgba(0,0,0,1), 0 0 2px rgba(255,255,255,0.8),0 -4px 15px rgba(255,255,255,0.5);
     
 }
+
+
 .sidenav .closebtn{
     position: absolute;
     width: fit-content;
@@ -156,6 +175,23 @@ span{
     color:white;
 
 }
+#userName{
+  /* position: absolute; */
+  width: fit-content;
+  text-align: center;
+  /* top:70px;
+  left: 50px; */
+  font-size: 20px;
+  margin-bottom: 3rem;
+  /* margin-left: 1rem; */
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  font-weight: 600;
+  cursor: default;
+
+}
+
 
 #openNav{
   float: left;
@@ -241,6 +277,31 @@ a {
     right: 1rem;
     float: bottom;
     
+}
+
+.about-section{
+  margin: 1rem;
+}
+#myImage{
+  border-radius: 50%;
+  width: 90%;
+  max-width: 203px;
+  height: auto;
+  border: 2pt solid black;
+  margin: 1rem;
+  
+}
+.myImage-section{
+  /* display: inline; */
+  white-space:nowrap;
+  /* margin-right: 12rem; */
+}
+
+#about-desc{
+  /* display: inline; */
+  height: fit-content;
+  line-height: 1.6;
+
 }
 /*---------------LOGIN/SIGNUP-------------------------*/
 #login-card{
@@ -365,7 +426,6 @@ a {
    /* background-color:transperant; */
    outline:none;
    cursor: pointer;
-   box-shadow: 0 19px 36px #00000029;
 
   }
   .gLogo-section{
@@ -373,8 +433,12 @@ a {
     text-align: center;
   }
   .gLogo{
+    
     width: 15rem;
     height: 2.8rem;
+    box-shadow: 0 19px 36px #00000029;
+
+    
 
   }
 

@@ -19,7 +19,7 @@ var firebaseConfig = {
 ///////////////////////////////////////////////////
   var url = window.location.pathname;
   var path = url.substring(url.lastIndexOf('/')+1);
-  console.log(window.location.pathname);
+  console.log(path);
 
   
 ///////////////////AUTH GUARD//////////////////
@@ -27,6 +27,12 @@ if(path!=""){
 firebase.auth().onAuthStateChanged(user => {
     if(!user) {
       window.location = '../'; 
+    }
+    else{
+
+        var name = user.displayName;
+        document.getElementById("userName").innerHTML = "<p>Hi "+name.substring(0,name.lastIndexOf(" "))+"</p>";
+
     }
   });
 }
@@ -47,7 +53,19 @@ firebase.auth().onAuthStateChanged(user => {
 //   }
 // }
 //
-
+////////////////////////////////////////////////
+function getData(){
+    firebase.database().ref().once('value').then(function(snapshot) {
+     this.aboutObj = snapshot.val().personal.about;
+     document.getElementById("about-desc").innerHTML = this.aboutObj.description;
+    
+    
+    });
+    
+    };
+    getData();
+////////////////////////////////////////////////
+    
 if (path!="index.html"||path!=""){
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -83,6 +101,7 @@ if(GSignIn){
     
     });
     }
+
 
 ///////////////////////Chart///////////////////////
 if (path=="about.html"){
@@ -179,8 +198,7 @@ document.getElementById("menuList").innerHTML = str;
 
 
 
-signOut=()=>{
-    console.log("Signout");
+function signOut(){
 
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
@@ -198,8 +216,10 @@ function login(){
     function newLoginHappened(user){
       if (user){
           //user is signed in
+
+        //   if (user.email){
           app(user);
-          
+        //   }
       }
       else{
           var provider = new firebase.auth.GoogleAuthProvider();
@@ -213,9 +233,20 @@ function login(){
 
 };
   function app(user){
-    location.replace("./home.html")
+    console.log(user);
+    var userEmail = user.email;
+    // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
+    if(userEmail.substring(userEmail.lastIndexOf("@")+1)!="psiog.com"){
+    location.replace("./home.html");
+    }
+    else{
+        signOut();
 
-      console.log(user)
+        alert(message="This email is not acceptable. Please try another one.");
+        
 
-  console.log(user.displayName);
+    }
+
+
 };
+
