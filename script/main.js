@@ -30,14 +30,47 @@ firebase.auth().onAuthStateChanged(user => {
       
     }
     else{
-        console.log(user);
+        // console.log(user);
 
         var name = user.displayName;
         document.getElementById("userName").innerHTML = "<p>Hi "+name.substring(0,name.lastIndexOf(" "))+"</p>";
+        sessionStorage.setItem('userId', user.uid);
+        sessionStorage.setItem('userName', user.displayName);
+        sessionStorage.setItem('userEmail', user.email);
+        sessionStorage.setItem('userNumber', user.phoneNumber);
+        sessionStorage.setItem('userPhoto', user.photoURL);
+
+
 
     }
   });
 }
+////////////////////////////////////////////////
+
+function getData(){
+    firebase.database().ref().once('value').then(function(snapshot) {
+   if(Object.keys(snapshot.val().users).indexOf(sessionStorage.getItem("userId")) ==-1){
+
+    firebase.database().ref().child('users').child(sessionStorage.getItem('userId')).set({
+    name: sessionStorage.getItem('userName'),
+    email: sessionStorage.getItem('userEmail'),
+    photoURL : sessionStorage.getItem('userPhoto'),
+    phoneNumber : sessionStorage.getItem('userNumber'),
+});
+
+}
+
+
+
+    sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
+
+
+    
+    });
+    
+    };
+    getData();
+////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
 
@@ -97,6 +130,9 @@ if(GSignIn){
 
 ///////////////////////Chart///////////////////////
 if (path=="about.html"){
+var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
+document.getElementById("about-desc").innerHTML = aboutObj.description;
+
 window.onload = function() {
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
@@ -195,6 +231,7 @@ function signOut(){
     firebase.auth().signOut().then(function() {
     // Sign-out successful.
     console.log("Signout success");
+    sessionStorage.clear();
       location.replace("./")
 
   }).catch(function(error) {
@@ -240,22 +277,4 @@ function login(){
 
 
 };
-////////////////////////////////////////////////
 
-function getData(){
-    firebase.database().ref().once('value').then(function(snapshot) {
-     this.aboutObj = snapshot.val().personal.about;
-     document.getElementById("about-desc").innerHTML = this.aboutObj.description;
-    
-    
-    });
-    
-    };
-    getData();
-////////////////////////////////////////////////
-// ref.child("users").orderByChild("ID").equalTo("U1EL5623").once("value",snapshot => {
-//     if (snapshot.exists()){
-//       const userData = snapshot.val();
-//       console.log("exists!", userData);
-//     }
-// });
