@@ -20,6 +20,11 @@ background-blend-mode: overlay;
   background-size: cover; */
 
 }
+input:focus,select:focus,textarea:focus{
+  outline: none !important;
+  border-color: black;
+  box-shadow: 0 0 5px black;
+}
 body { margin:0px;
   width: 100%;
   height: 100%;
@@ -303,6 +308,112 @@ a {
   line-height: 1.6;
 
 }
+
+/* /////////////////////CONTACT//////////////////////// */
+.contact-section{
+margin: 2rem;
+}
+
+.contactbtn {
+
+	border: none;
+  font-size: 18px;
+  width: 10rem;
+  height: 48px;
+	color: #000;
+	background: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 700;
+	position: relative;
+  outline: none;
+  box-shadow: 0 6px #cecece;
+  border-radius: 5px;
+  margin-right: 6px;
+  border: 1pt solid #cecece;
+  float: right;
+  margin-bottom: 2rem;
+
+
+}
+
+.contactbtn:hover {
+
+	background: #fff;
+  box-shadow: 0 4px #cecece;
+  top: 2px;
+  
+}
+
+
+.contactbtn:active {
+	background: #fff;
+  border-color: #cecece;
+  box-shadow: 0 0 #cecece;
+  top: 6px;
+  border: 1pt solid #cecece;
+}
+.contactmessage{
+  
+  background: rgba(0, 0, 0, 0.4); 
+  width: 60%;
+
+  border: none;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box; 
+  display: block;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 45px;
+  padding-top: 12px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  overflow: hidden;
+
+}
+#contact-heading{
+  text-align: center;
+}
+select {
+  margin-top: 3rem;
+
+  width: 100%;
+  height: 3rem;
+  line-height: 1.5;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -mox-border-radius: 10px;
+  color: #fff;
+  display: block;
+  background: transparent;
+  background-color: rgba(0,0,0,.4);
+  margin-bottom: 20px;
+  display: block;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select.indent {
+  padding-left: 20px;
+  cursor: pointer;
+}
+.contactmessage.indent {
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+
 /*---------------LOGIN/SIGNUP-------------------------*/
 #login-card{
   background-color: rgb(255, 255, 255);
@@ -318,6 +429,7 @@ a {
   margin: auto;
 
 }
+
 
 #heading{
 

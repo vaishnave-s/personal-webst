@@ -13,9 +13,9 @@
 <body>
     <div id="toggler">
         <span id="openNav"> &#9776; Contact </span>
-        <span  class="name-title">
-            
-          
+        <span class="name-title">
+
+
             Vaishnave Subbramanian
         </span>
     </div>
@@ -30,16 +30,17 @@
 
             </div>
             <div class="logout-section">
-                    <div class="navigation">
-  
-                            <a class="button" href="">
-                              <img class="logoutimg" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/logout-2030711-1713351.png">
-                          
-                          <div onclick="signOut()" class="logout">LOGOUT</div>
-                        
-                            </a>
-                          
-                        </div>
+                <div class="navigation">
+
+                    <a class="button" href="">
+                        <img class="logoutimg"
+                            src="https://cdn.iconscout.com/icon/premium/png-256-thumb/logout-2030711-1713351.png">
+
+                        <div onclick="signOut()" class="logout">LOGOUT</div>
+
+                    </a>
+
+                </div>
             </div>
         </div>
     </nav>
@@ -48,18 +49,28 @@
 
 
     <div class="content">
-            <div class="card-section">
+        <div class="card-section">
 
-                    <div class="card">Description
-                        <p>.</p>
-                        <p>.</p>
-                        <p>.</p>
-                        <p>.</p>
-                        <p>.</p>
-                        <p>.</p>
-        
-                    </div>
+            <div class="card">
+                <div class="contact-section">
+                    <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfmJ2zmKs5fMP3bXFBL-v39QJ6L7W0X_zH4PWiAKas2BeFU5w/viewform?embedded=true" width="640" height="1130" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+                    <h1 id="contact-heading"></h1>
+
+
+                    <select id="commentType" class="indent" aria-required="true" aria-invalid="false">
+                        <option value="General">Comments</option>
+                        <option value="Questions">Questions</option>
+                        <option value="Bug Reports">Bug Reports</option>
+                        <option value="Feature Request">Feature Request</option>
+
+                    </select>
+                    <textarea name="Message" cols="40" rows="10" id="contactmessage" class="contactmessage indent" aria-invalid="false"
+                        placeholder="Message"></textarea>
+                    <input type="submit" id="sendComment" value="Send" class="contactbtn">
+
                 </div>
+            </div>
+        </div>
 
 
     </div>
@@ -69,7 +80,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
     <script src="./script/main.js"></script>
-    
+
 </body>
 
 </html>

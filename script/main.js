@@ -1,7 +1,28 @@
 const openNav = document.querySelector("#openNav");
 const closeNav = document.querySelector("#closeNav");
 const GSignIn = document.querySelector("#GSignIn");
+const sendComment = document.querySelector("#sendComment");
 
+function calcTime(dateInput, offset) {
+
+    // create Date object for current location
+    d = new Date(dateInput);
+
+    // convert to msec
+    // add local time zone offset
+    // get UTC time in msec
+    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+    // create new Date object for different city
+    // using supplied offset
+    nd = new Date(utc + (3600000 * offset));
+    // return time as a string
+    return "" + nd;
+
+}
+function timedRefresh(time) {
+    setTimeout("location.reload(true);", time);
+}
 var firebaseConfig = {
     apiKey: "AIzaSyBm_uWn_TlojRuzuSzW9PREp5bjWmSOW-A",
     authDomain: "personal-webst.firebaseapp.com",
@@ -30,16 +51,15 @@ if (path != "") {
 
         }
         else {
-            console.log(user);
-
-            var name = user.displayName;
-            document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
             sessionStorage.setItem('userId', user.uid);
             sessionStorage.setItem('userName', user.displayName);
             sessionStorage.setItem('userEmail', user.email);
             sessionStorage.setItem('userNumber', user.phoneNumber);
             sessionStorage.setItem('userPhoto', user.photoURL);
-            sessionStorage.setItem('userCreationTime', user.metadata.creationTime);
+            sessionStorage.setItem('userCreationTime', calcTime(user.metadata.creationTime, '+5.5'));
+            var name = sessionStorage.getItem('userName');
+            document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
+
 
 
 
@@ -62,7 +82,15 @@ function getData() {
             });
 
         }
+        if (Object.keys(snapshot.val().comments).indexOf(sessionStorage.getItem("userId")) == -1) {
+            sessionStorage.setItem("commentsExist", 0);
+        }
+        else {
+            sessionStorage.setItem("commentsExist", Object.keys(snapshot.val().comments[sessionStorage.getItem("userId")]).length);
 
+
+
+        }
 
 
         sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
@@ -130,6 +158,7 @@ if (GSignIn) {
 
     });
 }
+
 
 
 ///////////////////////Chart///////////////////////
@@ -288,3 +317,66 @@ function app(user) {
 
 };
 
+///////////////////////////////////////////////////
+if (path == "contact.html") {
+    var name = sessionStorage.getItem('userName');
+
+    document.getElementById("contact-heading").innerHTML = "Let's connect, " + name.substring(0, name.lastIndexOf(" ")) + ".";
+    var today = new Date();
+
+    if (sendComment) {
+        sendComment.addEventListener("click", (e) => {
+            if (document.getElementById("contactmessage").value != "") {
+
+                if (sessionStorage.getItem("commentsExist") == 0) {
+                    firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).set({
+                        1: {
+                            name: sessionStorage.getItem('userName'),
+                            email: sessionStorage.getItem('userEmail'),
+                            commentMessage: document.getElementById("contactmessage").value,
+                            commentCreationTime: calcTime(today, '+5.5'),
+                            commentType: "" + document.getElementById("commentType").value
+
+                        }
+                    });
+                    alert("Thank you for connecting with me!");
+                    location.reload(true);
+
+
+
+                }
+                else {
+                    var nextIndexValue = parseInt(sessionStorage.getItem("commentsExist")) + 1;
+                    // var updateObj={}
+                    // updateObj[nextIndexValue] = {
+                    //     name: sessionStorage.getItem('userName'),
+                    //     email: sessionStorage.getItem('userEmail'),
+                    //     commentMessage: document.getElementById("contactmessage").value,
+                    //     commentCreationTime: calcTime(today,'+5.5'),
+                    //     commentType: ""+document.getElementById("commentType").value
+
+                    // }
+                    firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).update({
+                        [nextIndexValue]: {
+                            name: sessionStorage.getItem('userName'),
+                            email: sessionStorage.getItem('userEmail'),
+                            commentMessage: document.getElementById("contactmessage").value,
+                            commentCreationTime: calcTime(today, '+5.5'),
+                            commentType: "" + document.getElementById("commentType").value
+
+                        }
+                    });
+                    alert("Thank you for connecting with me!");
+                    location.reload(true);
+
+
+
+                }
+            }
+            else {
+                alert(Message = "Please enter a message.");
+            }
+
+        });
+    }
+}
