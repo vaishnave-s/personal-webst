@@ -290,16 +290,29 @@ a {
     line-height: 1.6;
   
 }
+#home-section{
+  margin: 1rem;
+    /* display: inline; */
+    height: fit-content;
+    line-height: 1.6;
+  
+}
+
 .about-section{
   margin: 1rem;
 }
+
 #myImage{
   border-radius: 50%;
   width: 90%;
   max-width: 203px;
   height: auto;
-  border: 2pt solid black;
-  margin: 1rem;
+	border: 10px solid #dddddd;
+  
+  margin: 0.5rem;
+  margin-right: 2rem;
+
+  
   
 }
 .myImage-section{

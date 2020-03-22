@@ -187,6 +187,7 @@ if (path == "about.html") {
 
     window.onload = function () {
         var ctx = document.getElementById('myChart');
+        
         var myChart = new Chart(ctx, {
             type: 'horizontalBar',
             // ChartType = 'horizontalBar',
@@ -228,6 +229,8 @@ if (path == "about.html") {
                 }]
             },
             options: {
+                responsive: true,
+
                 legend: {
                     labels: {
                         // This more specific font property overrides the global property
@@ -417,5 +420,12 @@ if (path == "interests.html") {
 document.getElementById("interests-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).interests.description
 
 
+
+}
+
+///////////////////////////////////////////////////
+if (path == "home.html") {
+
+document.getElementById("home-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).home.description
 
 }
