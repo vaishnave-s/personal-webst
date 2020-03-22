@@ -283,17 +283,36 @@ a {
     float: bottom;
     
 }
+#interests-section{
+  margin: 1rem;
+    /* display: inline; */
+    height: fit-content;
+    line-height: 1.6;
+  
+}
+#home-section{
+  margin: 1rem;
+    /* display: inline; */
+    height: fit-content;
+    line-height: 1.6;
+  
+}
 
 .about-section{
   margin: 1rem;
 }
+
 #myImage{
   border-radius: 50%;
   width: 90%;
   max-width: 203px;
   height: auto;
-  border: 2pt solid black;
-  margin: 1rem;
+	border: 10px solid #dddddd;
+  
+  margin: 0.5rem;
+  margin-right: 2rem;
+
+  
   
 }
 .myImage-section{
@@ -355,8 +374,9 @@ margin: 2rem;
 }
 .contactmessage{
   
-  background: rgba(0, 0, 0, 0.4); 
+  /* background: rgba(0, 0, 0, 0.4);  */
   width: 60%;
+  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
 
   border: none;
   -moz-border-radius: 10px;
@@ -368,7 +388,9 @@ margin: 2rem;
   display: block;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
-  color: #fff;
+  font-weight: 600;
+  color: black;
+
   padding-left: 45px;
   padding-top: 12px;
   margin-top: 3rem;
@@ -382,6 +404,9 @@ margin: 2rem;
 }
 select {
   margin-top: 3rem;
+  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+  font-weight: 600;
+  color: black;
 
   width: 100%;
   height: 3rem;
@@ -391,10 +416,9 @@ select {
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -mox-border-radius: 10px;
-  color: #fff;
   display: block;
-  background: transparent;
-  background-color: rgba(0,0,0,.4);
+  /* background: transparent; */
+  /* background-color: rgba(0,0,0,.4); */
   margin-bottom: 20px;
   display: block;
   font-family: 'Source Sans Pro', sans-serif;
@@ -411,6 +435,94 @@ select.indent {
   padding-left: 20px;
   padding-right: 20px;
 
+}
+
+
+.comment-name{
+float: left;
+}
+.comment-date{
+float: right;
+  
+}
+
+.comment-message{
+}
+
+/* body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: black;
+} */
+
+.hoverline {
+  
+  /* font-size: 3em; */
+  transition: all 0.25s linear;
+  position: relative;
+}
+
+.hoverline:before {
+
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* this is to match where the border is */
+  transform-origin: left; 
+  transform: scale(0);
+  transition: 0.25s linear;
+/*   will-change: transform; */
+}
+
+.hoverline:hover:before {
+
+  transform: scale(1);
+}
+.boxlink {
+  /* RESET */
+  text-decoration: none;
+  line-height: 1;
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  padding: 10px;
+  font-size:18px;
+  font-weight: 800;
+
+  overflow: hidden;
+  color: black;
+  vertical-align: bottom;
+  transition: color .3s ease-out;
+}
+
+.boxlink::before {
+
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  transform: translateY(calc(100% - 2px));
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+  transition: transform .25s ease-out;
+}
+
+.boxlink:hover { 
+  color: white; 
+}
+.boxlink:hover::before {
+
+  transform: translateY(0);
+  transition: transform .25s ease-out;
 }
 
 
@@ -554,4 +666,3 @@ select.indent {
 
   }
 
-  

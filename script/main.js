@@ -2,7 +2,8 @@ const openNav = document.querySelector("#openNav");
 const closeNav = document.querySelector("#closeNav");
 const GSignIn = document.querySelector("#GSignIn");
 const sendComment = document.querySelector("#sendComment");
-
+const music = document.querySelector("#music");
+const reading = document.querySelector("#reading");
 function calcTime(dateInput, offset) {
 
     // create Date object for current location
@@ -94,6 +95,7 @@ function getData() {
 
 
         sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
+        // sessionStorage.setItem('comments', JSON.stringify(snapshot.val().comments));
 
 
 
@@ -158,6 +160,23 @@ if (GSignIn) {
 
     });
 }
+if (music) {
+    music.addEventListener("click", (e) => {
+        window.open("//www.soundcloud.com/just_nave", '_blank');
+
+
+
+    });
+}
+if (reading) {
+    reading.addEventListener("click", (e) => {
+        window.open("//www.goodreads.com/just_nave", '_blank');
+
+
+
+    });
+}
+
 
 
 
@@ -168,6 +187,7 @@ if (path == "about.html") {
 
     window.onload = function () {
         var ctx = document.getElementById('myChart');
+        
         var myChart = new Chart(ctx, {
             type: 'horizontalBar',
             // ChartType = 'horizontalBar',
@@ -209,6 +229,8 @@ if (path == "about.html") {
                 }]
             },
             options: {
+                responsive: true,
+
                 legend: {
                     labels: {
                         // This more specific font property overrides the global property
@@ -256,7 +278,7 @@ if (path != "index.html" || path != "") {
     var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
     var str = '<ul>'
     menuItems.forEach(function (menuItem) {
-        str += '<li><h2><a class=\"sidenav-list\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
+        str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
     });
     str += '</ul>';
     document.getElementById("menuList").innerHTML = str;
@@ -379,4 +401,31 @@ if (path == "contact.html") {
 
         });
     }
+
+    // const displayComments = document.getElementById("displayComments").innerHTML=
+    // `<div class="card-section" ><div class="card" style="margin-top: 2rem;">
+    //                 <p><div class="comment-name">`++`</div>
+    //                 <div class="comment-date">`++`</div></p> <br>   
+    //                <p> <div class="comment-message">`++`</div></p>
+    //             </div></div>`;
+
+
+}
+
+
+
+
+///////////////////////////////////////////////////
+if (path == "interests.html") {
+document.getElementById("interests-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).interests.description
+
+
+
+}
+
+///////////////////////////////////////////////////
+if (path == "home.html") {
+
+document.getElementById("home-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).home.description
+
 }
