@@ -58,6 +58,8 @@ if (path != "") {
             sessionStorage.setItem('userNumber', user.phoneNumber);
             sessionStorage.setItem('userPhoto', user.photoURL);
             sessionStorage.setItem('userCreationTime', calcTime(user.metadata.creationTime, '+5.5'));
+            getData();
+            
             var name = sessionStorage.getItem('userName');
             document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
 
@@ -102,7 +104,6 @@ function getData() {
     });
 
 };
-getData();
 ////////////////////////////////////////////////
 
 ////////////////////////////////////////////////
@@ -194,7 +195,7 @@ if (path == "about.html") {
             data: {
                 labels: ['Python', 'SQL', 'TS/JS', 'Angular 8', 'Django'],
                 datasets: [{
-                    data: [65, 59, 80, 81, 56], label: 'Confidence Level',
+                    data: [65, 59, 80, 81, 56], label: 'Experience',
                     backgroundColor: [
                         // 'rgb(218,165,32,0.7)',
                         // 'rgb(218,165,32,0.7)',
@@ -313,6 +314,9 @@ function login() {
         }
         else {
             var provider = new firebase.auth.GoogleAuthProvider();
+            provider.setCustomParameters({
+                prompt: 'select_account'
+              });
             firebase.auth().signInWithPopup(provider);
 
         }
@@ -426,6 +430,6 @@ document.getElementById("interests-section").innerHTML = JSON.parse(sessionStora
 ///////////////////////////////////////////////////
 if (path == "home.html") {
 
-document.getElementById("home-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).home.description
+// document.getElementById("home-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).home.description
 
 }
