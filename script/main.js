@@ -137,8 +137,12 @@ if (openNav) {
     openNav.addEventListener("click", (e) => {
 
         document.getElementById("nav").style.width = "15rem";
-        document.getElementById("nav").style.backgroundColor = "rgb(109, 19, 94,0.8)";
+        // document.getElementById("nav").style.backgroundColor = "rgb(21, 109, 127,0.8)";
+        // document.getElementById("nav").style.backgroundColor = "rgb(147, 189, 102,0.8)";
+        document.getElementById("nav").style.backgroundImage= "linear-gradient(60deg, #98d358 0%,  #136170 100%)";
 
+        document.getElementById("nav").style.opacity= "0.9";
+        
         document.getElementById("main").style.marginLeft = "15rem";
 
     });
@@ -195,18 +199,20 @@ if (path == "about.html") {
             data: {
                 labels: ['Python', 'SQL', 'TS/JS', 'Angular 8', 'Django'],
                 datasets: [{
-                    data: [65, 59, 80, 81, 56], label: 'Experience',
+                    data: [65, 59, 80, 81, 56], label: 'Skill Set',
                     backgroundColor: [
                         // 'rgb(218,165,32,0.7)',
                         // 'rgb(218,165,32,0.7)',
                         // 'rgb(218,165,32,0.7)',
                         // 'rgb(218,165,32,0.7)',
                         // 'rgb(218,165,32,0.7)',
-                        "rgb(109, 19, 94,1)",
-                        "rgb(109, 19, 94,1)",
-                        "rgb(109, 19, 94,1)",
-                        "rgb(109, 19, 94,1)",
-                        "rgb(109, 19, 94,1)",
+                        "rgb(21, 109, 127)",
+                        "rgb(21, 109, 127)",
+                        "rgb(21, 109, 127)",
+                        "rgb(21, 109, 127)",
+                        "rgb(21, 109, 127)",
+                        "rgb(21, 109, 127)",
+
 
 
 
@@ -257,6 +263,8 @@ if (path == "about.html") {
                             max: 100
                         }
                     }], yAxes: [{
+                        barPercentage: 0.5,
+
                         display: true, scaleLabel: { display: true, }, ticks: {
                             fontStyle: 'bold',
                             fontFamily: 'Montserrat',
@@ -327,18 +335,21 @@ function login() {
 
 };
 function app(user) {
-    var userEmail = user.email;
-    // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
-    if (userEmail.substring(userEmail.lastIndexOf("@") + 1) != "psiog.com") {
-        location.replace("./home.html");
-    }
-    else {
-        signOut();
 
-        alert(message = "This email is not acceptable. Please try another one.");
+    location.replace("./home.html");
+
+    // var userEmail = user.email;
+    // // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
+    // if (userEmail.substring(userEmail.lastIndexOf("@") + 1) != "psiog.com") {
+    //     location.replace("./home.html");
+    // }
+    // else {
+    //     signOut();
+
+    //     alert(message = "This email is not acceptable. Please try another one.");
 
 
-    }
+    // }
 
 
 };

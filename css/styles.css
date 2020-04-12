@@ -3,21 +3,26 @@
 html{
   width: 100%;
   height: 100%;
-background-color: #f4e6e7;
+/* background-color: #f4e6e7; */
 
 opacity: 1;
 font-family: 'Montserrat', sans-serif!important;
-background: url("https://lh3.googleusercontent.com/JkVhRlrl1yOjikuq7tlG7HtQZBIiX0F-hVErNLjpXT4GALEqiS5dvR2oocJBu5_WVaVcPEKi5ejubBfzZcYTh47ONq3OAeoC-2TxacAmzrBYU5KnpYaD74hs9vcgUYiyb-9cWKxA2Tx4yqul7NeRZgf8xDWFK6JbW5rIZKacXTxIxSQGQbmp4sictXpXz2WXRIGYhGk93LsXH8buQF1tAHJtnEZm5Jn9NlnmG_NiS8QBREXISKU-m8LMqxnhK0TS9dRuPJA58zh6oyVJeHRgHNmoxBbT8Uk5mceH1tKb9UyYqLWsxBL9R7MZTwkqOPrhMGPLVo_74YxH0FDPS6xLLkHAJpNgRh03T1XURPAzsSUdd6l9lqb2TD8XREEhSJrs-Q6Wgp-ke6_NTMBIIJoWO_d3BUVAwPCOHwJavTwsYSLo634RBy4PzXwxWa4dclZT0hrRVg0cn24quoJiL7EII1Qc3R7I162Si5RKKmjDI8qqnc_ZvFAnNQb4COciNfx3FRHJhoknfnvNozxvsNdTmhN2gUcOS0T1_YzqYrxIvpUjqxVCe3dgTdeubCbhOabB7AKABSunjDIS0LevaJ7hs591VmKphh3a6o86vabBEW1RJexAjntletjmNBFnzZj_yzWNBwW1ihTsOyfXmUyEg1ffWEW2At5reyhIRQIhTXHxLWRXVW4Johvos4shQBx1qC13K6lJsdZgs4mpMTLSbBr7jifpNdCS0Dma7Mw-COTUadZPdByu7ABo=w1034-h1378-no") no-repeat center center fixed; 
+/* background: url("https://lh3.googleusercontent.com/JkVhRlrl1yOjikuq7tlG7HtQZBIiX0F-hVErNLjpXT4GALEqiS5dvR2oocJBu5_WVaVcPEKi5ejubBfzZcYTh47ONq3OAeoC-2TxacAmzrBYU5KnpYaD74hs9vcgUYiyb-9cWKxA2Tx4yqul7NeRZgf8xDWFK6JbW5rIZKacXTxIxSQGQbmp4sictXpXz2WXRIGYhGk93LsXH8buQF1tAHJtnEZm5Jn9NlnmG_NiS8QBREXISKU-m8LMqxnhK0TS9dRuPJA58zh6oyVJeHRgHNmoxBbT8Uk5mceH1tKb9UyYqLWsxBL9R7MZTwkqOPrhMGPLVo_74YxH0FDPS6xLLkHAJpNgRh03T1XURPAzsSUdd6l9lqb2TD8XREEhSJrs-Q6Wgp-ke6_NTMBIIJoWO_d3BUVAwPCOHwJavTwsYSLo634RBy4PzXwxWa4dclZT0hrRVg0cn24quoJiL7EII1Qc3R7I162Si5RKKmjDI8qqnc_ZvFAnNQb4COciNfx3FRHJhoknfnvNozxvsNdTmhN2gUcOS0T1_YzqYrxIvpUjqxVCe3dgTdeubCbhOabB7AKABSunjDIS0LevaJ7hs591VmKphh3a6o86vabBEW1RJexAjntletjmNBFnzZj_yzWNBwW1ihTsOyfXmUyEg1ffWEW2At5reyhIRQIhTXHxLWRXVW4Johvos4shQBx1qC13K6lJsdZgs4mpMTLSbBr7jifpNdCS0Dma7Mw-COTUadZPdByu7ABo=w1034-h1378-no") no-repeat center center fixed;  */
 font-weight: 500;
-  -webkit-background-size: cover;
+  /* -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
   /* background-image: url("https://images.unsplash.com/photo-1525663018617-37753d540108?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"); 
 background-repeat: no-repeat;
 background-blend-mode: overlay;
 
   background-size: cover; */
+
+/* background-color: rgb(255, 254, 254); */
+background-color: rgb(255, 248, 231);
+
+
 
 }
 input:focus,select:focus,textarea:focus{
@@ -32,17 +37,38 @@ body { margin:0px;
 ul{
   list-style-type:none;
 }
+
+#toggler-back{
+  min-height: 40px;
+  position: fixed;
+    width: 100%;
+    padding: 0.8rem;
+    /* background-color: hsl(212, 51%, 14%); */
+    /* opacity: 0.5; */
+    /* background: purple; */
+    background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+
+    text-align: center;
+    box-shadow: 0 19px 36px #00000029;
+
+
+}
 #toggler{
   min-height: 40px;
     width: 100%;
     padding: 0.8rem;
     /* background-color: hsl(212, 51%, 14%); */
     /* opacity: 0.5; */
-    background: transparent;
+    /* background: transparent; */
     text-align: center;
     box-shadow: 0 19px 36px #00000029;
+    background-image: linear-gradient(60deg, #98d358 50%,  #136170 50%);
+    /* background-image: linear-gradient(60deg, #222d55 10%,  #03d3ae 90%); */
+    /* background-image: linear-gradient(60deg, #c2e59c 50%,  #156d7f 50%); */
 
 
+    
+    
 }
 /* .sticky {
   position: fixed;
@@ -75,7 +101,7 @@ span{
 .name-title{
   text-shadow:2px 2px 1px black;
 
-  letter-spacing: 12px;
+  letter-spacing: 8px;
   /* box-shadow: 0 19px 36px #00000029; */
     color: white;
     /* margin-left: 18rem; */
@@ -140,8 +166,8 @@ span{
     z-index: 99;
     top: 0;
     left: 0;
-    background-color: rgb(109, 19, 94);
-
+    background-color: linear-gradient(60deg, #98d358 0%,  #136170 100%);
+    opacity: 0.9;
     overflow-x: hidden;
     transition: 0.5s;
     color: white;
@@ -197,7 +223,7 @@ span{
   font-style: italic;
   font-weight: 600;
   cursor: default;
-
+  text-transform: capitalize;  
 }
 
 
@@ -209,9 +235,10 @@ span{
     border-radius: 4px;
     border: 0.5px solid #eee;
     box-shadow: 0 19px 36px #00000029;
-    background-color: rgb(109, 19, 94);
+    /* background-color: rgb(109, 19, 94); */
+    background-color: white;
 
-    color: white;
+    color: black;
     font-weight: 600;
     /* background-color: rgb(109, 19, 94); */
 
@@ -339,7 +366,6 @@ margin: 2rem;
 
 .contactbtn {
 
-	border: none;
   font-size: 18px;
   width: 10rem;
   height: 48px;
@@ -353,7 +379,7 @@ margin: 2rem;
   box-shadow: 0 6px #cecece;
   border-radius: 5px;
   margin-right: 6px;
-  border: 1pt solid #cecece;
+  border: 1.5px solid #cecece;
   float: right;
   margin-bottom: 2rem;
 
@@ -379,11 +405,11 @@ margin: 2rem;
 .contactmessage{
   
   /* background: rgba(0, 0, 0, 0.4);  */
-  width: 60%;
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+  width: 40vw;
+  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
+  background-color: rgba(235, 235, 235, 0.8);
 
-  border: none;
-  -moz-border-radius: 10px;
+  border:none;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   -moz-background-clip: padding;
@@ -404,7 +430,7 @@ margin: 2rem;
 
 }
 #contact-heading{
-  text-align: center;
+  text-transform: capitalize;  
 }
 @media only screen and (max-width: 800px) {
   #contact-heading{
@@ -414,15 +440,17 @@ margin: 2rem;
 }
 select {
   margin-top: 3rem;
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
+  background-color: rgba(235, 235, 235, 0.8);
+
   font-weight: 600;
   color: black;
+  border:none;
 
-  width: 100%;
+  width: 44vw;
   height: 3rem;
   line-height: 1.5;
   font-size: 1.4em;
-  border: none;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -mox-border-radius: 10px;
@@ -522,7 +550,9 @@ float: right;
   transform: translateY(calc(100% - 2px));
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
+  background-color: rgb(21, 109, 127);
+
   transition: transform .25s ease-out;
 }
 
@@ -538,7 +568,9 @@ float: right;
 .content { 
   height: fit-content;
   margin-left: 1rem;
-  margin-top: 1rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
 
 }
 .slider-wrapper {
@@ -547,7 +579,6 @@ float: right;
   
   color:#aaa;
   font-weight: bold;
-  text-transform: uppercase;
   /* display: flex;
   align-items: center;
   justify-content: center; */
@@ -574,18 +605,16 @@ float: right;
   box-sizing: border-box;
 }
 .slider-text1 {
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
-
-  animation: slide 5s linear infinite;
+  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
+  background-color: rgb(21, 109, 127);
+  animation: slide 7s linear infinite;
 }
-.slider-text2 {
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
+.slider-text {
+  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
 
+  background-color: rgb(21, 109, 127);
 }
-.slider-text3 {
-  background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%);
 
-}
 @keyframes slide {
   0% {margin-top:-300px;}
   5% {margin-top:-200px;}
@@ -801,3 +830,59 @@ float: right;
 
   }
 
+
+
+/*======================
+    404 page
+=======================*/
+.image_404{
+  height: 35vh;
+  width:  30vw;
+  
+
+}
+
+
+
+.four_zero_four_bg h1{
+margin-bottom: unset;
+font-size:60px;
+}
+
+.desc_404{
+margin-bottom: 1.5rem;
+}
+
+.link_404{			 
+color: #fff;
+padding: 1rem;
+margin-bottom: 1.5rem;
+display: inline-block;
+/* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
+background-color:  #156d7f;
+
+}
+.link_404:hover{
+  width: unset;
+}
+
+
+@media only screen and (max-width: 1100px) {
+  .image_404{
+    height: 30vh;
+    width:  50vw;
+  
+  }
+  
+
+}
+
+@media only screen and (max-width: 500px) {
+  .image_404{
+    height: 30vh;
+    width:  60vw;
+  
+  }
+  
+
+}
