@@ -230,6 +230,7 @@ span{
 #openNav{
   float: left;
     padding: 0.7rem;
+    width:92px;
     margin-left: 1rem;
     /* font-size: larger; */
     border-radius: 4px;
