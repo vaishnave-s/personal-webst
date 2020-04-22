@@ -2,8 +2,7 @@ const openNav = document.querySelector("#openNav");
 const closeNav = document.querySelector("#closeNav");
 const GSignIn = document.querySelector("#GSignIn");
 const sendComment = document.querySelector("#sendComment");
-const music = document.querySelector("#music");
-const reading = document.querySelector("#reading");
+
 function calcTime(dateInput, offset) {
 
     // create Date object for current location
@@ -165,30 +164,52 @@ if (GSignIn) {
 
     });
 }
-if (music) {
-    music.addEventListener("click", (e) => {
-        window.open("//www.soundcloud.com/just_nave", '_blank');
-
-
-
-    });
-}
-if (reading) {
-    reading.addEventListener("click", (e) => {
-        window.open("//www.goodreads.com/just_nave", '_blank');
-
-
-
-    });
-}
-
 
 
 
 ///////////////////////Chart///////////////////////
 if (path == "about.html") {
-    var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
-    document.getElementById("about-desc").innerHTML = aboutObj.description;
+    var aboutItems = ["EDUCATION", "INTERNSHIP", "EXPERIENCE"]
+    var aboutButtons = ["Listen Now", "Reading List", "College Theatre"]
+
+    var aboutImgLinks = ["https://factstranscript.com/wp-content/uploads/2019/06/Sastra-Transcript.jpg", 
+    "https://seekvectorlogo.com/wp-content/uploads/2018/01/university-of-pennsylvania-penn-vector-logo.png", 
+    "https://www.gitex.com/__media/libraries/news/D9C8A76F-09B0-6E43-FF067C15EE6E462D-featured_image.png"]
+    var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,JSON.parse(sessionStorage.getItem("website")).about.internship,JSON.parse(sessionStorage.getItem("website")).about.experience]
+
+    about_displaycard_str = ``;
+    
+    aboutItems.forEach((aboutItem, index) => {
+    const aboutImgLink = aboutImgLinks[index];
+    const aboutContent = aboutContents[index];
+    const aboutButton = aboutButtons[index];
+
+
+
+    about_displaycard_str += `<div class="about-displaycard">
+    <div class="front">
+      <h3 class="displaycardtitle">`+aboutItem+`
+        
+      </h3>
+      <img class="blockcard-img" src="`+aboutImgLink+`" alt="" />
+    </div>
+`;
+    about_displaycard_str += `    <div class="back" style=" display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    ">
+    
+    <div class="blockcarddesc">`+aboutContent+`</div>
+   
+    </div>
+  </div>`;
+
+});
+document.getElementById("about-blockcard-section").innerHTML = about_displaycard_str;
+
+    // var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
+    // document.getElementById("about-desc").innerHTML = aboutObj.description;
 
     window.onload = function () {
         var ctx = document.getElementById('myChart');
@@ -432,7 +453,66 @@ if (path == "contact.html") {
 
 ///////////////////////////////////////////////////
 if (path == "interests.html") {
-document.getElementById("interests-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).interests.description
+    var interestsItems = ["MUSIC", "READING", "THEATRE", "GAMES"]
+    var interestsButtons = ["Listen Now", "Reading List", "College Theatre", "SPORTS"]
+
+    var interestsImgLinks = ["https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
+    "https://images.unsplash.com/photo-1476275466078-4007374efbbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
+    "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
+    "https://images.unsplash.com/photo-1543092587-d8b8feaf362b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"]
+    var interestsLinks = ["//www.soundcloud.com/just_nave", "//www.goodreads.com/just_nave", "//www.instagram.com/thestudio_sastra/", "SPORTS"]
+    var interestsContents = [JSON.parse(sessionStorage.getItem("website")).interests.music,JSON.parse(sessionStorage.getItem("website")).interests.reading,JSON.parse(sessionStorage.getItem("website")).interests.theatre,JSON.parse(sessionStorage.getItem("website")).interests.sports]
+
+    displaycard_str = ``;
+    
+    interestsItems.forEach((interestsItem, index) => {
+    const interestsImgLink = interestsImgLinks[index];
+    const interestsLink = interestsLinks[index];
+    const interestsContent = interestsContents[index];
+    const interestsButton = interestsButtons[index];
+
+
+
+    displaycard_str += `<div class="displaycard">
+    <div class="front">
+      <h3 class="displaycardtitle">`+interestsItem+`
+        
+      </h3>
+      <img class="blockcard-img" src="`+interestsImgLink+`" alt="" />
+    </div>
+`;
+  if (interestsItem != "GAMES"){
+    displaycard_str += `    <div class="back">
+    
+    <div class="blockcarddesc">`+interestsContent+`</div>
+    <a href="`+interestsLink+`" class="displaycardbtn target="_blank">`+interestsButton+`</a>
+    </div>
+  </div>`;
+  }
+  else{
+    displaycard_str += `    <div class="back" style=" display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    ">
+    
+    <div class="blockcarddesc">`+interestsContent+`
+    </div>
+  </div>`;
+  }
+});
+document.getElementById("blockcard-section").innerHTML = displaycard_str;
+
+
+var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
+var str = '<ul>'
+menuItems.forEach(function (menuItem) {
+    str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
+});
+str += '</ul>';
+document.getElementById("menuList").innerHTML = str;
+
+// document.getElementById("interests-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).interests.description
 
 
 
