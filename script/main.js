@@ -485,7 +485,7 @@ if (path == "interests.html") {
     displaycard_str += `    <div class="back">
     
     <div class="blockcarddesc">`+interestsContent+`</div>
-    <a href="`+interestsLink+`" class="displaycardbtn target="_blank">`+interestsButton+`</a>
+    <a target="_blank" href="`+interestsLink+`" class="displaycardbtn">`+interestsButton+`</a>
     </div>
   </div>`;
   }
