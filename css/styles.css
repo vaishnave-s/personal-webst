@@ -147,39 +147,17 @@ span{
     border-radius: 13px;
     /* opacity: 1; */
     opacity: 0.95;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 
 
 }
-.home-card{
-  
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  max-width: 1000px;
 
-  
-
-  background-color: rgb(255, 255, 255);
-  /* max-width: 791px; */
-  min-width: 219px;
-  width: 65%;
-  height: fit-content;
-  padding: 1rem;
-  /* border: 1px solid black; */
-  background: no-repeat padding-box #fff;
-  box-shadow: 0 19px 36px #00000029;
-  border-radius: 13px;
-  /* opacity: 1; */
-  opacity: 0.95;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Non-prefixed version, currently
-                                supported by Chrome, Opera and Firefox */
-
-}
 
 
 .chart-section{
@@ -611,173 +589,16 @@ vertical-align: middle;
 }
 
 
-.slider-wrapper {
-
-  font-size:40px;
-  height: fit-content;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-top: 3rem;
-  display: inline-block;
-  color:#aaa;
-  font-weight: bold;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-}
-.slider{
-  /* height: 50px; */
-  height: 50px;
-  /* width: max-content; */
-  padding-left:15px;
-  overflow: hidden;
-  margin-bottom: 5.5rem;
-
-
-}
-.slider div {
-  /* width: max-content; */
-
-  color:#fff;
-  margin-bottom: 50px;
-  height: 50px;
-
-  padding: 2px 15px;
-  text-align: center;
-  box-sizing: border-box;
-}
-.slider-text1 {
-  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
-  background-color: rgb(21, 109, 127);
-  animation: slide 7s linear infinite;
-}
-.slider-text {
-  /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
-
-  background-color: rgb(21, 109, 127);
-}
-
-@keyframes slide {
-  0% {margin-top:-300px;}
-  5% {margin-top:-200px;}
-  33% {margin-top:-200px;}
-  38% {margin-top:-100px;}
-  66% {margin-top:-100px;}
-  71% {margin-top:0px;}
-  100% {margin-top:0px;}
-}
-
-.signin-name-title{
- margin-left: 128px;
- text-shadow:2px 2px 1px black;
-
- letter-spacing: 8px;
- /* box-shadow: 0 19px 36px #00000029; */
-   color: white;
-   /* margin-left: 18rem; */
-   font-size: 29px;
-
-   /* font-size: 29px; */
-   font-weight: 800;
-
-   /* font-weight: 500; */
-   text-transform: uppercase;
- cursor: default;
-   /* opacity: 1; */
-
-}
-
-@media only screen and (max-width: 1200px) {
-  .slider-wrapper {
-    font-size:30px;
-
-
-  }
-  .slider{
-    height:48px;
-    padding: 5px;
-  }
-  .slider div{
-    height:48px;
-    padding: 5px;
-
-
-  }
-
-
-}
-@media only screen and (max-width: 970px) {
-  .slider-wrapper {
-    font-size:22px;
-
-  }
-  .slider{
-    height:48px;
-    padding: 5px;
-  }
-  .slider div{
-    height:48px;
-    padding: 5px;
-
-
-  }
-
-}
-@media only screen and (max-width: 846px) {
-  .slider-wrapper {
-    font-size:14px;
-
-  }
-  .slider{
-    height:48px;
-    padding: 5px;
-  }
-  .slider div{
-    height:48px;
-    padding: 5px;
-
-
-  }
-
-}
 
 @media only screen and (max-width: 790px) {
   .name-title{
     margin-top: 1.5rem;
   }
 }
-@media only screen and (max-width: 770px) {
-.home-card{
-  display: unset;
 
-  justify-content: unset;
-  text-align: center;
-  height: unset;
-  min-height: unset;
-}
-.slider-wrapper{
-  margin-top: 3rem;
-}
-
-
-
-}
 
 @media only screen and (max-width: 746px) {
-  .slider-wrapper {
-    font-size:18px;
 
-  }
-  .slider{
-    height:48px;
-    padding: 5px;
-  }
-  .slider div{
-    height:48px;
-    padding: 5px;
-
-
-  }
   .signin-name-title{
     margin-left: unset;
 
@@ -1070,12 +891,58 @@ vertical-align: middle;
   }
 }
 
+/*------------------SLIDESHOW-HOME--------------------*/
+.home-card{
+  background-color: rgb(255, 255, 255);
+  /* max-width: 791px; */
+  min-width: 219px;
+  max-width: 1000px;
+  max-height: 700px;
+  width: 50%;
+
+  /* height: fit-content; */
+  padding: 1rem 3rem 1rem 3rem;
+  /* border: 1px solid black; */
+  background: no-repeat padding-box #fff;
+  box-shadow: 0 19px 36px #00000029;
+  border-radius: 13px;
+  /* opacity: 1; */
+  opacity: 0.95;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Opera and Firefox */
+}
+@keyframes slidy {
+  0% { left: 0%; }
+  10% { left: 0%; }
+  15% { left: -100%; }
+  35% { left: -100%; }
+  40% { left: -200%; }
+  60% { left: -200%; }
+  65% { left: 0; }
 
 
+  }
+
+  div#sliding { overflow: hidden; }
+  div#sliding figure img { width: 20%; 
+    float: left; }
+  div#sliding figure { 
+    position: relative;
+    width: 500%;
 
 
-
-
+    margin: 0;
+    left: 0;
+    text-align: left;
+    font-size: 0;
+    animation: 30s slidy infinite; 
+  }
+  
 /*---------------LOGIN/SIGNUP-------------------------*/
 #login-card{
   background-color: rgb(255, 255, 255);
