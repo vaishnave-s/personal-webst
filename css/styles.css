@@ -222,7 +222,7 @@ span{
 .sidenav li:hover{
     cursor: pointer;
     /* color: rgb(182, 182, 182); */
-    text-shadow: 0px -2px 0px rgba(0,0,0,1), 0 0 2px rgba(255,255,255,0.8),0 -4px 15px rgba(255,255,255,0.5);
+    text-shadow: 0px -2px 0px rgb(66, 66, 66), 0 0 2px rgba(255,255,255,0.8),0 -4px 15px rgba(255,255,255,0.5);
     
 }
 
@@ -988,11 +988,11 @@ height: 100%;
 
   }
 
-  div#sliding { overflow: hidden; }
-  div#sliding figure img { width: 20%; 
+  div#slideshow { overflow: hidden; }
+  div#slideshow figure img { width: 20%; 
     height: 50%;
     float: left; }
-  div#sliding figure { 
+  div#slideshow figure { 
     position: relative;
     width: 500%;
 

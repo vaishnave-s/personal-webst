@@ -20,9 +20,7 @@ function calcTime(dateInput, offset) {
     return "" + nd;
 
 }
-function timedRefresh(time) {
-    setTimeout("location.reload(true);", time);
-}
+
 var firebaseConfig = {
     apiKey: "AIzaSyBm_uWn_TlojRuzuSzW9PREp5bjWmSOW-A",
     authDomain: "personal-webst.firebaseapp.com",
@@ -96,42 +94,34 @@ function getData() {
 
 
         sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
-        // sessionStorage.setItem('comments', JSON.stringify(snapshot.val().comments));
 
 
 
     });
 
 };
-////////////////////////////////////////////////
-
-////////////////////////////////////////////////
-
-
-//
-// window.onscroll = function() {myFunction()};
-
-// var header = document.getElementById("toggler");
-// var sticky = header.offsetTop;
-
-// function myFunction() {
-//   if (window.pageYOffset > sticky) {
-//     header.classList.add("sticky");
-//   } else {
-//     header.classList.remove("sticky");
-//   }
-// }
-//
-////////////////////////////////////////////////
+/////////////////////ALL PAGES///////////////////////////
 
 
 if (path != "index.html" || path != "") {
 
+    /////////////////////SIDENAV///////////////////////////
     window.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById("nav").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     });
+
+    /////////////////////MENU///////////////////////////
+    var menuItems = ["Home", "About", "Interests", "Contact"]
+    var str = '<ul>'
+    menuItems.forEach(function (menuItem) {
+        str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
+    });
+    str += '</ul>';
+    document.getElementById("menuList").innerHTML = str;
 }
+/////////////////////BUTTON CLICKS///////////////////////////
+
 if (openNav) {
     openNav.addEventListener("click", (e) => {
 
@@ -167,13 +157,17 @@ if (GSignIn) {
 
 
 
-///////////////////////Chart///////////////////////
+///////////////////////ABOUT///////////////////////
 if (path == "about.html") {
+    ///////////////////////ABOUT ELEMENTS///////////////////////
+
     var aboutItems = ["EDUCATION", "INTERNSHIP", "EXPERIENCE"]
     var aboutButtons = ["Listen Now", "Reading List", "College Theatre"]
 
     var aboutImgLinks = ["images/about-img1.jpg","images/about-img2.png","images/about-img3.png"]
-    var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,JSON.parse(sessionStorage.getItem("website")).about.internship,JSON.parse(sessionStorage.getItem("website")).about.experience]
+    var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,
+    JSON.parse(sessionStorage.getItem("website")).about.internship,
+    JSON.parse(sessionStorage.getItem("website")).about.experience]
 
     about_displaycard_str = ``;
     
@@ -206,49 +200,23 @@ if (path == "about.html") {
 });
 document.getElementById("about-blockcard-section").innerHTML = about_displaycard_str;
 
-    // var aboutObj = JSON.parse(sessionStorage.getItem("website")).about;
-    // document.getElementById("about-desc").innerHTML = aboutObj.description;
-
+    ///////////////////////CHART///////////////////////
     window.onload = function () {
         var ctx = document.getElementById('myChart');
         
         var myChart = new Chart(ctx, {
             type: 'horizontalBar',
-            // ChartType = 'horizontalBar',
             data: {
                 labels: ['Python', 'SQL', 'TS/JS', 'Angular 8', 'Django'],
                 datasets: [{
                     data: [65, 59, 80, 81, 56], label: 'Skill Set',
                     backgroundColor: [
-                        // 'rgb(218,165,32,0.7)',
-                        // 'rgb(218,165,32,0.7)',
-                        // 'rgb(218,165,32,0.7)',
-                        // 'rgb(218,165,32,0.7)',
-                        // 'rgb(218,165,32,0.7)',
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
-
-
-
-
-
-
-
-
-                    ],
-                    borderColor: [
-                        // 'rgb(218,165,32)',
-                        // 'rgb(218,165,32)',
-                        // 'rgb(218,165,32)',
-                        // 'rgb(218,165,32)',
-                        // 'rgb(218,165,32)',
-                        // 'rgb(218,165,32)',
-
-
 
                     ],
                     borderWidth: 1
@@ -259,7 +227,6 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
 
                 legend: {
                     labels: {
-                        // This more specific font property overrides the global property
                         fontFamily: 'Montserrat',
                         fontStyle: 'bold',
                     }
@@ -270,13 +237,11 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
                             display: true, labelString: 'Percentage', fontStyle: 'bold',
                             fontFamily: 'Montserrat',
 
-                            // fontColor:'#FF66C4',
 
                         }, ticks: {
 
                             beginAtZero: true,
                             display: false,
-                            // fontColor:'rgb(218, 62, 158)',
 
                             min: 0,
                             max: 100
@@ -291,7 +256,6 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
                             beginAtZero: true,
                             min: 0,
                             max: 100
-                            // fontColor:'rgb(218, 62, 158)',
 
                         }
                     }]
@@ -300,21 +264,7 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
         });
     }
 }
-///////////////////////////////////////////////////
-if (path != "index.html" || path != "") {
-
-    var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
-    var str = '<ul>'
-    menuItems.forEach(function (menuItem) {
-        str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
-    });
-    str += '</ul>';
-    document.getElementById("menuList").innerHTML = str;
-}
-///////////////////////////////////////////////////
-
-
-
+////////////////////SIGNOUT///////////////////////////////
 function signOut() {
 
     firebase.auth().signOut().then(function () {
@@ -329,7 +279,7 @@ function signOut() {
     });
 };
 
-///////////////////////////////////////////////////
+//////////////////////LOGIN/////////////////////////////
 function login() {
     function newLoginHappened(user) {
         if (user) {
@@ -356,29 +306,16 @@ function login() {
 function app(user) {
 
     location.replace("./home.html");
-
-    // var userEmail = user.email;
-    // // console.log(userEmail.substring(userEmail.lastIndexOf("@")+1));
-    // if (userEmail.substring(userEmail.lastIndexOf("@") + 1) != "psiog.com") {
-    //     location.replace("./home.html");
-    // }
-    // else {
-    //     signOut();
-
-    //     alert(message = "This email is not acceptable. Please try another one.");
-
-
-    // }
-
-
 };
 
-///////////////////////////////////////////////////
+//////////////////////CONTACT/////////////////////////////
 if (path == "contact.html") {
-    var name = sessionStorage.getItem('userName');
+    //////////////////////CONTACT ELEMENTS/////////////////////////////
 
+    var name = sessionStorage.getItem('userName');
     document.getElementById("contact-heading").innerHTML = "Let's connect, " + name.substring(0, name.lastIndexOf(" ")) + ".";
     var today = new Date();
+    //////////////////////SEND BUTTON CLICK/////////////////////////////
 
     if (sendComment) {
         sendComment.addEventListener("click", (e) => {
@@ -403,15 +340,6 @@ if (path == "contact.html") {
                 }
                 else {
                     var nextIndexValue = parseInt(sessionStorage.getItem("commentsExist")) + 1;
-                    // var updateObj={}
-                    // updateObj[nextIndexValue] = {
-                    //     name: sessionStorage.getItem('userName'),
-                    //     email: sessionStorage.getItem('userEmail'),
-                    //     commentMessage: document.getElementById("contactmessage").value,
-                    //     commentCreationTime: calcTime(today,'+5.5'),
-                    //     commentType: ""+document.getElementById("commentType").value
-
-                    // }
                     firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).update({
                         [nextIndexValue]: {
                             name: sessionStorage.getItem('userName'),
@@ -436,37 +364,27 @@ if (path == "contact.html") {
         });
     }
 
-    // const displayComments = document.getElementById("displayComments").innerHTML=
-    // `<div class="card-section" ><div class="card" style="margin-top: 2rem;">
-    //                 <p><div class="comment-name">`++`</div>
-    //                 <div class="comment-date">`++`</div></p> <br>   
-    //                <p> <div class="comment-message">`++`</div></p>
-    //             </div></div>`;
-
-
 }
 
 
 
 
-///////////////////////////////////////////////////
+////////////////////////////INTERESTS///////////////////////
 if (path == "interests.html") {
+
+    ////////////////////////////INTERESTS ELEMENTS///////////////////////
     var interestsItems = ["MUSIC", "READING", "THEATRE", "GAMES"]
     var interestsButtons = ["Listen Now", "Reading List", "College Theatre", "SPORTS"]
-
     var interestsImgLinks = ["images/interests-img1.jpeg", "images/interests-img2.jpeg","images/interests-img3.jpeg","images/interests-img4.jpeg"];
     var interestsLinks = ["//www.soundcloud.com/just_nave", "//www.goodreads.com/just_nave", "//www.instagram.com/thestudio_sastra/", "SPORTS"]
     var interestsContents = [JSON.parse(sessionStorage.getItem("website")).interests.music,JSON.parse(sessionStorage.getItem("website")).interests.reading,JSON.parse(sessionStorage.getItem("website")).interests.theatre,JSON.parse(sessionStorage.getItem("website")).interests.sports]
-
     displaycard_str = ``;
-    
+
     interestsItems.forEach((interestsItem, index) => {
     const interestsImgLink = interestsImgLinks[index];
     const interestsLink = interestsLinks[index];
     const interestsContent = interestsContents[index];
     const interestsButton = interestsButtons[index];
-
-
 
     displaycard_str += `<div class="displaycard">
     <div class="front">
@@ -497,25 +415,10 @@ if (path == "interests.html") {
   }
 });
 document.getElementById("blockcard-section").innerHTML = displaycard_str;
-
-
-var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
-var str = '<ul>'
-menuItems.forEach(function (menuItem) {
-    str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
-});
-str += '</ul>';
-document.getElementById("menuList").innerHTML = str;
-
-// document.getElementById("interests-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).interests.description
-
-
-
 }
 
 ///////////////////////////////////////////////////
 if (path == "home.html") {
 
-// document.getElementById("home-section").innerHTML = JSON.parse(sessionStorage.getItem("website")).home.description
 
 }
