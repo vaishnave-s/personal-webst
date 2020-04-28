@@ -951,19 +951,15 @@ height: 100%;
 /*------------------SLIDESHOW-HOME--------------------*/
 .home-card{
   background-color: rgb(255, 255, 255);
-  /* max-width: 791px; */
   min-width: 219px;
   max-width: 1000px;
   max-height: 700px;
   width: 50%;
 
-  /* height: fit-content; */
   padding: 1rem 3rem 1rem 3rem;
-  /* border: 1px solid black; */
   background: no-repeat padding-box #fff;
   box-shadow: 0 19px 36px #00000029;
   border-radius: 13px;
-  /* opacity: 1; */
   opacity: 0.95;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -1017,18 +1013,23 @@ height: 100%;
   border-radius: 13px;
   opacity: 1;
   margin: auto;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Opera and Firefox */
 
 }
 
 
 #heading{
 
-  /* font-family: karmina-sans, sans-serif;
-  font-style: normal; */
+
   font-weight: 500;
   text-align: center;
   font-size: 30px;
-  /* margin-bottom: 3rem;   */
   
 
 

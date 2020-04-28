@@ -3,6 +3,7 @@ const closeNav = document.querySelector("#closeNav");
 const GSignIn = document.querySelector("#GSignIn");
 const sendComment = document.querySelector("#sendComment");
 
+//Calculates time in IST
 function calcTime(dateInput, offset) {
 
     // create Date object for current location
@@ -21,6 +22,7 @@ function calcTime(dateInput, offset) {
 
 }
 
+//Firebase Configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBm_uWn_TlojRuzuSzW9PREp5bjWmSOW-A",
     authDomain: "personal-webst.firebaseapp.com",
@@ -35,7 +37,7 @@ firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 
 
-///////////////////////////////////////////////////
+//Find path location on the website
 var url = window.location.pathname;
 var path = url.substring(url.lastIndexOf('/') + 1);
 console.log(path);
@@ -67,8 +69,10 @@ if (path != "") {
         }
     });
 }
-////////////////////////////////////////////////
 
+//////////////////FUNCTIONS/////////////////////////////////
+
+//Fetching data from firebase and storing in session
 function getData() {
     firebase.database().ref().once('value').then(function (snapshot) {
         if (Object.keys(snapshot.val().users).indexOf(sessionStorage.getItem("userId")) == -1) {
@@ -94,34 +98,68 @@ function getData() {
 
 
         sessionStorage.setItem('website', JSON.stringify(snapshot.val().personal));
+        // sessionStorage.setItem('comments', JSON.stringify(snapshot.val().comments));
 
 
 
     });
 
 };
-/////////////////////ALL PAGES///////////////////////////
+
+//Signout
+function signOut() {
+
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        console.log("Signout success");
+        sessionStorage.clear();
+        location.replace("./")
+
+    }).catch(function (error) {
+        console.log("Signout error");
+        // An error happened.
+    });
+};
+
+//Login
+function login() {
+    function newLoginHappened(user) {
+        if (user) {
+            //user is signed in
+
+            //   if (user.email){
+            app(user);
+            //   }
+        }
+        else {
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.setCustomParameters({
+                prompt: 'select_account'
+              });
+            firebase.auth().signInWithPopup(provider);
+
+        }
+    }
+    firebase.auth().onAuthStateChanged(newLoginHappened);
 
 
+
+};
+function app(user) {
+
+    location.replace("./home.html");
+};
+
+////////////////////SIDENAV////////////////////////////
 if (path != "index.html" || path != "") {
 
-    /////////////////////SIDENAV///////////////////////////
     window.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById("nav").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     });
-
-    /////////////////////MENU///////////////////////////
-    var menuItems = ["Home", "About", "Interests", "Contact"]
-    var str = '<ul>'
-    menuItems.forEach(function (menuItem) {
-        str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
-    });
-    str += '</ul>';
-    document.getElementById("menuList").innerHTML = str;
 }
-/////////////////////BUTTON CLICKS///////////////////////////
 
+////////////////////BUTTON CLICK LISTENERS///////////////////////////////
 if (openNav) {
     openNav.addEventListener("click", (e) => {
 
@@ -157,7 +195,7 @@ if (GSignIn) {
 
 
 
-///////////////////////ABOUT///////////////////////
+///////////////////////ABOUT PAGE///////////////////////
 if (path == "about.html") {
     ///////////////////////ABOUT ELEMENTS///////////////////////
 
@@ -165,9 +203,7 @@ if (path == "about.html") {
     var aboutButtons = ["Listen Now", "Reading List", "College Theatre"]
 
     var aboutImgLinks = ["images/about-img1.jpg","images/about-img2.png","images/about-img3.png"]
-    var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,
-    JSON.parse(sessionStorage.getItem("website")).about.internship,
-    JSON.parse(sessionStorage.getItem("website")).about.experience]
+    var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,JSON.parse(sessionStorage.getItem("website")).about.internship,JSON.parse(sessionStorage.getItem("website")).about.experience]
 
     about_displaycard_str = ``;
     
@@ -201,6 +237,7 @@ if (path == "about.html") {
 document.getElementById("about-blockcard-section").innerHTML = about_displaycard_str;
 
     ///////////////////////CHART///////////////////////
+
     window.onload = function () {
         var ctx = document.getElementById('myChart');
         
@@ -217,7 +254,6 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
                         "rgb(21, 109, 127)",
-
                     ],
                     borderWidth: 1
                 }]
@@ -236,13 +272,10 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
                         display: true, scaleLabel: {
                             display: true, labelString: 'Percentage', fontStyle: 'bold',
                             fontFamily: 'Montserrat',
-
-
                         }, ticks: {
 
                             beginAtZero: true,
                             display: false,
-
                             min: 0,
                             max: 100
                         }
@@ -264,58 +297,27 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
         });
     }
 }
-////////////////////SIGNOUT///////////////////////////////
-function signOut() {
 
-    firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-        console.log("Signout success");
-        sessionStorage.clear();
-        location.replace("./")
 
-    }).catch(function (error) {
-        console.log("Signout error");
-        // An error happened.
+//////////////////////SIDENAV MENU LIST/////////////////////////////
+if (path != "index.html" || path != "") {
+
+    var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
+    var str = '<ul>'
+    menuItems.forEach(function (menuItem) {
+        str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
     });
-};
+    str += '</ul>';
+    document.getElementById("menuList").innerHTML = str;
+}
 
-//////////////////////LOGIN/////////////////////////////
-function login() {
-    function newLoginHappened(user) {
-        if (user) {
-            //user is signed in
-
-            //   if (user.email){
-            app(user);
-            //   }
-        }
-        else {
-            var provider = new firebase.auth.GoogleAuthProvider();
-            provider.setCustomParameters({
-                prompt: 'select_account'
-              });
-            firebase.auth().signInWithPopup(provider);
-
-        }
-    }
-    firebase.auth().onAuthStateChanged(newLoginHappened);
-
-
-
-};
-function app(user) {
-
-    location.replace("./home.html");
-};
-
-//////////////////////CONTACT/////////////////////////////
+////////////////////CONTACT PAGE///////////////////////////////
 if (path == "contact.html") {
-    //////////////////////CONTACT ELEMENTS/////////////////////////////
 
+    ////////////////////CONTACT ELEMENTS///////////////////////////////
     var name = sessionStorage.getItem('userName');
     document.getElementById("contact-heading").innerHTML = "Let's connect, " + name.substring(0, name.lastIndexOf(" ")) + ".";
     var today = new Date();
-    //////////////////////SEND BUTTON CLICK/////////////////////////////
 
     if (sendComment) {
         sendComment.addEventListener("click", (e) => {
@@ -363,28 +365,28 @@ if (path == "contact.html") {
 
         });
     }
-
 }
 
-
-
-
-////////////////////////////INTERESTS///////////////////////
+//////////////////////INTERESTS PAGE/////////////////////////////
 if (path == "interests.html") {
+    //////////////////////INTERESTS ELEMENTS/////////////////////////////
 
-    ////////////////////////////INTERESTS ELEMENTS///////////////////////
     var interestsItems = ["MUSIC", "READING", "THEATRE", "GAMES"]
     var interestsButtons = ["Listen Now", "Reading List", "College Theatre", "SPORTS"]
+
     var interestsImgLinks = ["images/interests-img1.jpeg", "images/interests-img2.jpeg","images/interests-img3.jpeg","images/interests-img4.jpeg"];
     var interestsLinks = ["//www.soundcloud.com/just_nave", "//www.goodreads.com/just_nave", "//www.instagram.com/thestudio_sastra/", "SPORTS"]
     var interestsContents = [JSON.parse(sessionStorage.getItem("website")).interests.music,JSON.parse(sessionStorage.getItem("website")).interests.reading,JSON.parse(sessionStorage.getItem("website")).interests.theatre,JSON.parse(sessionStorage.getItem("website")).interests.sports]
-    displaycard_str = ``;
 
+    displaycard_str = ``;
+    
     interestsItems.forEach((interestsItem, index) => {
     const interestsImgLink = interestsImgLinks[index];
     const interestsLink = interestsLinks[index];
     const interestsContent = interestsContents[index];
     const interestsButton = interestsButtons[index];
+
+
 
     displaycard_str += `<div class="displaycard">
     <div class="front">
@@ -415,10 +417,14 @@ if (path == "interests.html") {
   }
 });
 document.getElementById("blockcard-section").innerHTML = displaycard_str;
+
+
+var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
+var str = '<ul>'
+menuItems.forEach(function (menuItem) {
+    str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
+});
+str += '</ul>';
+document.getElementById("menuList").innerHTML = str;
 }
 
-///////////////////////////////////////////////////
-if (path == "home.html") {
-
-
-}
