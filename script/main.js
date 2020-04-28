@@ -172,9 +172,7 @@ if (path == "about.html") {
     var aboutItems = ["EDUCATION", "INTERNSHIP", "EXPERIENCE"]
     var aboutButtons = ["Listen Now", "Reading List", "College Theatre"]
 
-    var aboutImgLinks = ["https://factstranscript.com/wp-content/uploads/2019/06/Sastra-Transcript.jpg", 
-    "https://seekvectorlogo.com/wp-content/uploads/2018/01/university-of-pennsylvania-penn-vector-logo.png", 
-    "https://www.gitex.com/__media/libraries/news/D9C8A76F-09B0-6E43-FF067C15EE6E462D-featured_image.png"]
+    var aboutImgLinks = ["images/about-img1.jpg","images/about-img2.png","images/about-img3.png"]
     var aboutContents = [JSON.parse(sessionStorage.getItem("website")).about.education,JSON.parse(sessionStorage.getItem("website")).about.internship,JSON.parse(sessionStorage.getItem("website")).about.experience]
 
     about_displaycard_str = ``;
@@ -456,10 +454,7 @@ if (path == "interests.html") {
     var interestsItems = ["MUSIC", "READING", "THEATRE", "GAMES"]
     var interestsButtons = ["Listen Now", "Reading List", "College Theatre", "SPORTS"]
 
-    var interestsImgLinks = ["https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
-    "https://images.unsplash.com/photo-1476275466078-4007374efbbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
-    "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", 
-    "https://images.unsplash.com/photo-1543092587-d8b8feaf362b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"]
+    var interestsImgLinks = ["images/interests-img1.jpeg", "images/interests-img2.jpeg","images/interests-img3.jpeg","images/interests-img4.jpeg"];
     var interestsLinks = ["//www.soundcloud.com/just_nave", "//www.goodreads.com/just_nave", "//www.instagram.com/thestudio_sastra/", "SPORTS"]
     var interestsContents = [JSON.parse(sessionStorage.getItem("website")).interests.music,JSON.parse(sessionStorage.getItem("website")).interests.reading,JSON.parse(sessionStorage.getItem("website")).interests.theatre,JSON.parse(sessionStorage.getItem("website")).interests.sports]
 
