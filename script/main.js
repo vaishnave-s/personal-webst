@@ -3,75 +3,7 @@ const closeNav = document.querySelector("#closeNav");
 const GSignIn = document.querySelector("#GSignIn");
 const sendComment = document.querySelector("#sendComment");
 
-//Calculates time in IST
-function calcTime(dateInput, offset) {
-
-    // create Date object for current location
-    d = new Date(dateInput);
-
-    // convert to msec
-    // add local time zone offset
-    // get UTC time in msec
-    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-
-    // create new Date object for different city
-    // using supplied offset
-    nd = new Date(utc + (3600000 * offset));
-    // return time as a string
-    return "" + nd;
-
-}
-
-//Firebase Configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyBm_uWn_TlojRuzuSzW9PREp5bjWmSOW-A",
-    authDomain: "personal-webst.firebaseapp.com",
-    databaseURL: "https://personal-webst.firebaseio.com",
-    projectId: "personal-webst",
-    storageBucket: "personal-webst.appspot.com",
-    messagingSenderId: "222343428376",
-    appId: "1:222343428376:web:5f92d20c8ef1e8a5afc66d",
-    measurementId: "G-GDZ6GNV45N"
-};
-firebase.initializeApp(firebaseConfig);
-const firestore = firebase.firestore();
-
-
-//Find path location on the website
-var url = window.location.pathname;
-var path = url.substring(url.lastIndexOf('/') + 1);
-console.log(path);
-
-
-///////////////////AUTH GUARD//////////////////
-if (path != "") {
-    firebase.auth().onAuthStateChanged(user => {
-        if (!user) {
-            window.location = './';
-
-        }
-        else {
-            sessionStorage.setItem('userId', user.uid);
-            sessionStorage.setItem('userName', user.displayName);
-            sessionStorage.setItem('userEmail', user.email);
-            sessionStorage.setItem('userNumber', user.phoneNumber);
-            sessionStorage.setItem('userPhoto', user.photoURL);
-            sessionStorage.setItem('userCreationTime', calcTime(user.metadata.creationTime, '+5.5'));
-            getData();
-            
-            var name = sessionStorage.getItem('userName');
-            document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
-
-
-
-
-
-        }
-    });
-}
-
 //////////////////FUNCTIONS/////////////////////////////////
-
 //Fetching data from firebase and storing in session
 function getData() {
     firebase.database().ref().once('value').then(function (snapshot) {
@@ -149,6 +81,75 @@ function app(user) {
 
     location.replace("./home.html");
 };
+//Calculates time in IST
+function calcTime(dateInput, offset) {
+
+    // create Date object for current location
+    d = new Date(dateInput);
+
+    // convert to msec
+    // add local time zone offset
+    // get UTC time in msec
+    utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+
+    // create new Date object for different city
+    // using supplied offset
+    nd = new Date(utc + (3600000 * offset));
+    // return time as a string
+    return "" + nd;
+
+}
+
+//Firebase Configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBm_uWn_TlojRuzuSzW9PREp5bjWmSOW-A",
+    authDomain: "personal-webst.firebaseapp.com",
+    databaseURL: "https://personal-webst.firebaseio.com",
+    projectId: "personal-webst",
+    storageBucket: "personal-webst.appspot.com",
+    messagingSenderId: "222343428376",
+    appId: "1:222343428376:web:5f92d20c8ef1e8a5afc66d",
+    measurementId: "G-GDZ6GNV45N"
+};
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
+
+
+//Find path location on the website
+var url = window.location.pathname;
+var path = url.substring(url.lastIndexOf('/') + 1);
+console.log(path);
+
+
+///////////////////AUTH GUARD//////////////////
+if (path != "") {
+    firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+            window.location = './';
+
+        }
+        else {
+            sessionStorage.setItem('userId', user.uid);
+            sessionStorage.setItem('userName', user.displayName);
+            sessionStorage.setItem('userEmail', user.email);
+            sessionStorage.setItem('userNumber', user.phoneNumber);
+            sessionStorage.setItem('userPhoto', user.photoURL);
+            sessionStorage.setItem('userCreationTime', calcTime(user.metadata.creationTime, '+5.5'));
+            getData();
+            
+            var name = sessionStorage.getItem('userName');
+            document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
+
+
+
+
+
+        }
+    });
+}
+
+
+
 
 ////////////////////SIDENAV////////////////////////////
 if (path != "index.html" || path != "") {
@@ -302,7 +303,7 @@ document.getElementById("about-blockcard-section").innerHTML = about_displaycard
 //////////////////////SIDENAV MENU LIST/////////////////////////////
 if (path != "index.html" || path != "") {
 
-    var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
+    var menuItems = ["Home", "About", "Interests", "Contact"]
     var str = '<ul>'
     menuItems.forEach(function (menuItem) {
         str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
@@ -319,20 +320,24 @@ if (path == "contact.html") {
     document.getElementById("contact-heading").innerHTML = "Let's connect, " + name.substring(0, name.lastIndexOf(" ")) + ".";
     var today = new Date();
 
+    //Object containing comment information
+    function commentObject(){
+        return {
+            name: sessionStorage.getItem('userName'),
+            email: sessionStorage.getItem('userEmail'),
+            commentMessage: document.getElementById("contactmessage").value,
+            commentCreationTime: calcTime(today, '+5.5'),
+            commentType: "" + document.getElementById("commentType").value
+
+        }
+    }
     if (sendComment) {
         sendComment.addEventListener("click", (e) => {
             if (document.getElementById("contactmessage").value != "") {
 
                 if (sessionStorage.getItem("commentsExist") == 0) {
                     firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).set({
-                        1: {
-                            name: sessionStorage.getItem('userName'),
-                            email: sessionStorage.getItem('userEmail'),
-                            commentMessage: document.getElementById("contactmessage").value,
-                            commentCreationTime: calcTime(today, '+5.5'),
-                            commentType: "" + document.getElementById("commentType").value
-
-                        }
+                        1: commentObject()
                     });
                     alert("Thank you for connecting with me!");
                     location.reload(true);
@@ -343,14 +348,7 @@ if (path == "contact.html") {
                 else {
                     var nextIndexValue = parseInt(sessionStorage.getItem("commentsExist")) + 1;
                     firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).update({
-                        [nextIndexValue]: {
-                            name: sessionStorage.getItem('userName'),
-                            email: sessionStorage.getItem('userEmail'),
-                            commentMessage: document.getElementById("contactmessage").value,
-                            commentCreationTime: calcTime(today, '+5.5'),
-                            commentType: "" + document.getElementById("commentType").value
-
-                        }
+                        [nextIndexValue]: commentObject()
                     });
                     alert("Thank you for connecting with me!");
                     location.reload(true);
@@ -418,13 +416,5 @@ if (path == "interests.html") {
 });
 document.getElementById("blockcard-section").innerHTML = displaycard_str;
 
-
-var menuItems = ["HOME", "ABOUT", "INTERESTS", "CONTACT"]
-var str = '<ul>'
-menuItems.forEach(function (menuItem) {
-    str += '<li><h2><a class=\"sidenav-list hoverline\" href=\"' + menuItem.toLowerCase() + '.html\">' + menuItem + '</a><h2></li>';
-});
-str += '</ul>';
-document.getElementById("menuList").innerHTML = str;
 }
 
