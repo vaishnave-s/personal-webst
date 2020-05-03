@@ -1,6 +1,5 @@
 import { firebaseauth } from './firebase-auth.js';
-import { getData, login, calcTime, commentObject, onPostComment } from './functions.js';
-
+import { PersonalWebsite } from './functions.js';
 
 const openNav = document.querySelector("#openNav");
 const closeNav = document.querySelector("#closeNav");
@@ -15,7 +14,6 @@ firebaseauth()
 //Find path location on the website
 var url = window.location.pathname;
 var path = url.substring(url.lastIndexOf('/') + 1);
-console.log(path);
 
 ///////////////////AUTH GUARD//////////////////
 if (path != "") {
@@ -30,16 +28,10 @@ if (path != "") {
             sessionStorage.setItem('userEmail', user.email);
             sessionStorage.setItem('userNumber', user.phoneNumber);
             sessionStorage.setItem('userPhoto', user.photoURL);
-            sessionStorage.setItem('userCreationTime', calcTime(user.metadata.creationTime, '+5.5'));
-            getData();
-
+            sessionStorage.setItem('userCreationTime', PersonalWebsite.calcTime(user.metadata.creationTime, '+5.5'));
+            PersonalWebsite.getData();
             var name = sessionStorage.getItem('userName');
             document.getElementById("userName").innerHTML = "<p>Hi " + name.substring(0, name.lastIndexOf(" ")) + "</p>";
-
-
-
-
-
         }
     });
 }
@@ -51,6 +43,7 @@ if (path != "") {
 if (path != "") {
 
     window.addEventListener('DOMContentLoaded', (event) => {
+
         document.getElementById("nav").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
     });
@@ -73,6 +66,7 @@ if (openNav) {
 
 if (closeNav) {
     closeNav.addEventListener("click", (e) => {
+
         e.preventDefault();
         document.getElementById("nav").style.width = "0rem";
         document.getElementById("main").style.marginLeft = "0rem";
@@ -84,13 +78,15 @@ if (closeNav) {
 //Google Sign in
 if (GSignIn) {
     GSignIn.addEventListener("click", (e) => {
-        login();
+
+        PersonalWebsite.login();
     });
 }
 
 //Signout
 if (signOut) {
     signOut.addEventListener("click", (e) => {
+
         firebase.auth().signOut().then(function () {
             // Sign-out successful.
             console.log("Signout success");
@@ -232,9 +228,9 @@ if (path == "contact.html") {
 
                 if (sessionStorage.getItem("commentsExist") == 0) {
                     firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).set({
-                        1: commentObject()
+                        1: PersonalWebsite.commentObject()
                     });
-                    onPostComment()
+                    PersonalWebsite.onPostComment()
 
 
 
@@ -242,9 +238,9 @@ if (path == "contact.html") {
                 else {
                     var nextIndexValue = parseInt(sessionStorage.getItem("commentsExist")) + 1;
                     firebase.database().ref().child('comments').child(sessionStorage.getItem('userId')).update({
-                        [nextIndexValue]: commentObject()
+                        [nextIndexValue]: PersonalWebsite.commentObject()
                     });
-                    onPostComment()
+                    PersonalWebsite.onPostComment()
 
 
                 }
