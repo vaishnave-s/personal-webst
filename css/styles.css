@@ -683,6 +683,11 @@ height: 100%;
     font-size: 16px;
   }
 
+  #heading{
+    font-size: 24px!important;
+
+  }
+
 }
 
 @media (max-width: 760px) {
@@ -711,6 +716,19 @@ height: 100%;
   .contactbtn {
     font-size: 14px;
   }
+  #heading{
+    font-size: 20px!important;
+
+  }
+  .gLogo{
+    
+    width: 12rem!important;
+    height: 2.2rem!important;
+
+    
+
+  }
+
   
 }
 
@@ -1044,9 +1062,10 @@ height: 100%;
 /*---------------LOGIN/SIGNUP-------------------------*/
 #login-card{
   background-color: rgb(255, 255, 255);
-  width: 30%;
+  /* width: 30%; */
   padding: 3rem;
-  min-width: 320px;
+  min-width: 219px;
+
   height: fit-content;
   max-width: 432px;
   background: no-repeat padding-box #fff;
@@ -1071,7 +1090,6 @@ height: 100%;
   font-weight: 500;
   text-align: center;
   font-size: 30px;
-  
 
 
 }
@@ -1165,6 +1183,9 @@ height: 100%;
   }
 
   .gLogo-btn{
+    width: fit-content;
+    height: fit-content;
+
     border:none;
     background-color: white;
    /* background-color:transperant; */
