@@ -208,7 +208,7 @@ span{
 }
 .sidenav-contents{
     margin: 1rem;
-    font-size: 16px;
+    font-size: 100%;
 
 
 
@@ -245,7 +245,8 @@ span{
   text-align: center;
   /* top:70px;
   left: 50px; */
-  font-size: 20px;
+  font-size: 120%;
+
   margin-bottom: 3rem;
   /* margin-left: 1rem; */
   margin-left: auto;
@@ -400,8 +401,8 @@ margin: 2rem;
 .contactbtn {
 
   font-size: 18px;
-  width: 10rem;
-  height: 48px;
+  width: 9.7rem;
+  height: 3rem;
 	color: #000;
 	background: #fff;
 	cursor: pointer;
@@ -453,6 +454,7 @@ margin: 2rem;
   display: block;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
+  
   font-weight: 600;
   color: black;
 
@@ -465,14 +467,11 @@ margin: 2rem;
 
 }
 #contact-heading{
+  font-size: 1.5rem;
+
   text-transform: capitalize;  
 }
-@media only screen and (max-width: 800px) {
-  #contact-heading{
-    text-align: center;
-    font-size: 22px;
-  }
-}
+
 select {
   margin-top: 3rem;
   /* background-image: linear-gradient(60deg, #c2e59c 0%,  #156d7f 100%); */
@@ -487,7 +486,8 @@ select {
   width: 44vw;
   height: 3rem;
   line-height: 1.5;
-  font-size: 1.4em;
+  font-size: 18px;
+
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -mox-border-radius: 10px;
@@ -663,6 +663,26 @@ height: 100%;
     grid-template-columns: repeat(2, 1fr)!important;
 
   }
+  .displaycardtitle {
+    font-size: 20px!important;
+
+  }
+  .blockcarddesc{
+    font-size: 13px!important;
+    margin: 0 0 1rem!important;
+
+  }
+  .contactmessage{
+    font-size: 16px;
+  }
+  select{
+    font-size: 16px;
+
+  }
+  .contactbtn {
+    font-size: 16px;
+  }
+
 }
 
 @media (max-width: 760px) {
@@ -670,6 +690,26 @@ height: 100%;
   }
   
   #blockcard-section { grid-template-columns: repeat(1, 1fr)!important;
+  }
+  .displaycardtitle {
+    font-size: 18px!important;
+    
+
+  }
+  #contact-heading{
+    font-size: 1rem;
+    text-align: center;
+
+  }
+  .contactmessage{
+    font-size: 14px;
+  }
+  select{
+    font-size: 14px;
+
+  }
+  .contactbtn {
+    font-size: 14px;
   }
   
 }
@@ -868,7 +908,8 @@ height: 100%;
   color: rgba(white, 0.85);
   font-size: 15px;
   line-height: 1;
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
+  line-height: 16px
 }
 
 
@@ -884,7 +925,7 @@ height: 100%;
   color: black;
   transition: 0.5s;
   margin: 0 2px 0;
-  font-weight: 100;
+  font-weight: 600;
 
 }
 
