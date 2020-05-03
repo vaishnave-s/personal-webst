@@ -1048,7 +1048,6 @@ height: 100%;
   35% { left: -100%; }
   40% { left: -200%; }
   60% { left: -200%; }
-  65% { left: 0; }
 
 
 
@@ -1067,7 +1066,7 @@ height: 100%;
     left: 0;
     text-align: left;
     font-size: 0;
-    animation: 30s slidy infinite; 
+    animation: 20s slidy infinite; 
   }
   
 /*---------------LOGIN/SIGNUP-------------------------*/
